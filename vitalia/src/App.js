@@ -1,22 +1,19 @@
+// Inside App.jsx
 import React from "react";
-import {
-  BrowserRouter,
-  //createBrowserRouter,
-  Route,
-  //RouterProvider,
-  Routes,
-} from "react-router-dom";
-
-//Imports para rutas
-import Login from "./Modules/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./Modules/Login.jsx";
 
 function App() {
+  console.log("App component rendered");
+  
   return (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login/>} />
-          </Routes>
-        </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
