@@ -1,34 +1,17 @@
 import React, { useEffect } from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
+	const navigate = useNavigate();
 
     console.log("Login component rendered");
 
-    useEffect(() => {
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-
-        // Check if elements exist before attaching event listeners
-        if (signUpButton && signInButton && container) {
-            const handleSignUpClick = (e) => {
-                e.preventDefault();
-                container.classList.add('right-panel-active');
-            };
-
-            const handleSignInClick = (e) => {
-                e.preventDefault();
-                container.classList.remove('right-panel-active');
-            };
-
-            return () => {
-                signUpButton.removeEventListener('click', handleSignUpClick);
-                signInButton.removeEventListener('click', handleSignInClick);
-            };
-        }
-    }, []);
+	const handleSignUpClick = () => {
+		// Redirige a la página de registro
+		navigate('/registrar-user');
+	  };
 
     return (
         
@@ -61,7 +44,7 @@ function Login() {
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start your journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+				<button class="ghost" id="signUp"  onClick={handleSignUpClick} >Sign Up</button>
 			</div>
 		</div>
 	</div>

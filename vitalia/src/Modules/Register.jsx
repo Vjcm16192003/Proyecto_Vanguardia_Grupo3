@@ -1,13 +1,14 @@
 import React from 'react';
 import './Register.css';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     return (
 
         <div className="scrollable-page">
-            <div className="container">
+            <div className="container1">
                 <div className="registration-box">
-                    <h2>Registration</h2>
+                    <h2 id="header-register">Registrate Ahora!</h2>
 
                     <div className="form-group">
                         <label htmlFor="fullName">Full Name:</label>
