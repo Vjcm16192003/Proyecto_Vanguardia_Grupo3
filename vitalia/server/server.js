@@ -14,31 +14,51 @@ app.get("/api", (req, res) => {
 
 
 
-app.get("/usuario", async (req, res) => {
-    try {
-        // SQL query to select all users from the 'usuario' table
-        const selectSTMT = "SELECT * FROM usuario";
+app.get("/usuario", (req, res) => {
+  // SQL query to select all users with email, password, and ID
+  const selectSTMT = 'SELECT "user_id", "email", "password" FROM usuario';
 
-        const result = await pool.query(selectSTMT);
-
-        // Check if records were found
-        if (result.rows.length > 0) {
-            // Log data to the console
-            console.log("Usuarios:", result.rows);
-            // Send data as a JSON response
-            res.json(result.rows);
-        } else {
-            // If no records were found, return an error message
-            console.log("No se encontraron usuarios.");
-            res.status(404).json({ message: "No se encontraron usuarios" });
-        }
-    } catch (err) {
-        // Handle query errors
-        console.error("Error al obtener usuarios:", err);
-        res.status(500).json({ message: "Error interno del servidor" });
-    }
+  pool.query(selectSTMT)
+      .then((result) => {
+          // Send the user data as a JSON response
+          res.json(result.rows);
+      })
+      .catch((err) => {
+          // Handle database query errors
+          console.error("Error fetching users:", err);
+          res.status(500).json({ message: "Internal server error" });
+      });
 });
 
+
+app.get("/usuario/:id", (req, res) => {
+  // Obtén el ID de usuario de los parámetros de la solicitud
+  const userId = parseInt(req.params.id, 10); // Convierte la cadena a un entero
+
+  if (isNaN(userId)) {
+      return res.status(400).json({ message: "ID de usuario inválido" });
+  }
+
+  // Consulta SQL para seleccionar un usuario específico por ID
+  const selectSTMT = `SELECT * FROM usuario WHERE "user_id" = $1`;
+
+  pool.query(selectSTMT, [userId])
+      .then((result) => {
+          // Verifica si se encontró un usuario con el ID proporcionado
+          if (result.rows.length === 1) {
+              // Envía los datos del usuario como respuesta JSON
+              res.json(result.rows[0]);
+          } else {
+              // Si no se encontró un usuario con el ID proporcionado, devuelve una respuesta 404
+              res.status(404).json({ message: "Usuario no encontrado" });
+          }
+      })
+      .catch((err) => {
+          // Maneja errores de consulta a la base de datos
+          console.error("Error al obtener usuario:", err);
+          res.status(500).json({ message: "Error interno del servidor" });
+      });
+});
 
 
 app.post("/usuario", (req, res) => {
@@ -49,12 +69,11 @@ app.post("/usuario", (req, res) => {
       date_of_birth,
       password,
       height,
-      gender
+      gender,
+      diet_type,
     } = req.body;
   
-
-
-    
+  
     // Consultar la cantidad actual de usuarios
     pool.query('SELECT COUNT(*) AS user_count FROM usuario')
       .then((result) => {
@@ -69,9 +88,10 @@ app.post("/usuario", (req, res) => {
         console.log("Correo:", email);
         console.log("Fecha de Nacimiento:", date_of_birth);
         console.log("Peso:", weight);
+        console.log("Tipo de Dieta:", diet_type);
   
-        const insertSTMT = `INSERT INTO usuario (user_id, fullname, weight, email, date_of_birth, password, height, gender) 
-                            VALUES (${newUserId}, '${fullname}', ${weight}, '${email}', '${date_of_birth}', '${password}', ${height}, '${gender}');`;
+        const insertSTMT = `INSERT INTO usuario (user_id, fullname, weight, email, date_of_birth, password, height, gender, diet_type) 
+                            VALUES (${newUserId}, '${fullname}', ${weight}, '${email}', '${date_of_birth}', '${password}', ${height}, '${gender}', '${diet_type}');`;
   
         pool.query(insertSTMT)
           .then((response) => {

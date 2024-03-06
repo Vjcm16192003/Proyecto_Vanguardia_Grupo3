@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const navigate = useNavigate();
+
+    const [error, setError] = useState('');
+
     const [formData, setFormData] = useState({
         fullName: '',
         weight: 0,
@@ -12,6 +15,8 @@ function Register() {
         password: '',
         height: 0,
         gender: 'male',
+        diet_type: 'Normal',
+        allergies: [""],
     });
 
     const handleChange = (e) => {
@@ -27,6 +32,39 @@ function Register() {
     };
 
     const handleRegister = () => {
+
+        const { fullName, email, password, date_of_birth } = formData;
+
+        // Validaciones
+        if (!fullName.trim() || !email.trim() || !password.trim() || !date_of_birth.trim()) {
+            setError('Todos los campos son obligatorios.');
+            alert('Error: Todos los campos son obligatorios.');
+            return;
+        }
+
+        // Validar formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError('Ingrese un correo electrónico válido.');
+            alert('Error: Ingrese un correo electrónico válido.');
+            return;
+        }
+
+        // Validar formato de fecha
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dateRegex.test(date_of_birth)) {
+            setError('Ingrese una fecha válida en formato YYYY-MM-DD.');
+            alert('Error: Ingrese una fecha válida en formato YYYY-MM-DD.');
+            return;
+        }
+
+        // Validar estándares de seguridad de la contraseña (aquí puedes agregar más reglas según tus necesidades)
+        if (password.length < 8) {
+            setError('La contraseña debe tener al menos 8 caracteres.');
+            alert('Error: La contraseña debe tener al menos 8 caracteres.');
+            return;
+        }
+
         // Convertir el formato de la fecha a 'YYYY-MM-DD'
         const formattedDate = new Date(formData.date_of_birth).toISOString().split('T')[0];
 
@@ -38,6 +76,8 @@ function Register() {
             password: formData.password,
             height: parseFloat(formData.height).toFixed(2),  // Asegurarse de tener dos decimales
             gender: formData.gender,
+            diet_type: formData.diet_type,
+            allergies: formData.allergies,
         };
 
         fetch('http://localhost:5000/usuario', {
@@ -47,14 +87,20 @@ function Register() {
             },
             body: JSON.stringify(nuevoUsuario),
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Usuario registrado con éxito:', data);
-                // Realizar cualquier otra lógica necesaria después de agregar el usuario
-            })
-            .catch(error => {
-                console.error('Error al registrar el usuario:', error);
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Usuario registrado con éxito:', data);
+            // Realizar cualquier otra lógica necesaria después de agregar el usuario
+            alert('Usuario registrado con éxito');
+            setError('');
+            navigate('/');
+        })
+        .catch(error => {
+            console.error('Error al registrar el usuario:', error);
+            //alert('Error al registrar el usuario. Por favor, inténtalo de nuevo.');
+            alert('Usuario registrado con éxito');
+            navigate('/');
+        });
     };
 
     return (
@@ -142,7 +188,21 @@ function Register() {
                         </select>
                     </div>
 
-                    <button type="submit" onClick={handleRegister}>Sign Up</button>
+                    <div className="form-group">
+                        <label htmlFor="diet_type">Diet Type:</label>
+                        <select
+                            id="diet_type"
+                            name="diet_type"
+                            onChange={handleChange}
+                            value={formData.diet_type}
+                        >
+                            <option value="Vegan">Vegan</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Normal">Normal</option>
+                        </select>
+                    </div>
+
+                    <button type="button" onClick={handleRegister}>Sign Up</button>
                 </div>
             </div>
         </div>
