@@ -1,52 +1,47 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext.js'; // Importa el contexto de autenticación
 import './Login.css';
 
 function Login() {
+  const authContext = React.useContext(AuthContext); // Obtiene el contexto de autenticación
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null);
 
   const handleSignIn = () => {
-	// Enviar solicitud al servidor para obtener todos los usuarios
-	fetch('http://localhost:5000/usuario')
-	  .then(response => {
-		if (response.ok) {
-		  return response.json();
-		} else {
-		  throw new Error('Error al obtener usuarios');
-		}
-	  })
-	  .then(users => {
-		// Buscar el usuario con las credenciales proporcionadas
-		const foundUser = users.find(user => user.email === email && user.password === password);
-  
-		if (foundUser) {
-		  // Inicio de sesión exitoso, establecer el estado y navegar a la página de inicio
-		  console.log('Inicio de sesión exitoso:', foundUser);
-		  setLoggedIn(true);
-		  setUserId(foundUser.user_id);
-		  console.log(foundUser.user_id)
-		  // Navegar a la página de destino
-		  navigate('/landing');
-		} else {
-		  // Credenciales incorrectas
-		  console.error('Credenciales incorrectas');
-		  alert('Credenciales incorrectas');
-		}
-	  })
-	  .catch(error => {
-		// Manejar errores, por ejemplo, mostrar un mensaje de error al usuario
-		console.error('Error al iniciar sesión:', error.message);
-	  });
+    // Tu lógica de inicio de sesión
+    fetch('http://localhost:5000/usuario')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error al obtener usuarios');
+        }
+      })
+      .then(users => {
+        const foundUser = users.find(user => user.email === email && user.password === password);
+
+        if (foundUser) {
+          // Inicio de sesión exitoso, utiliza la función de inicio de sesión del contexto
+          authContext.login(foundUser.user_id);
+          navigate('/landing');
+        } else {
+          // Credenciales incorrectas
+          console.error('Credenciales incorrectas');
+          alert('Credenciales incorrectas');
+        }
+      })
+      .catch(error => {
+        // Manejar errores
+        console.error('Error al iniciar sesión:', error.message);
+      });
   };
 
-  
   const handleSignUpClick = () => {
     navigate('/registrar-user');
   };
+
 
   return (
     <div className="container" id="container">

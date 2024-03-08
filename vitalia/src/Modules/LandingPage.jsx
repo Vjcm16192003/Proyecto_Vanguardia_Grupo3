@@ -1,27 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Axios from 'axios';
-import { AuthContext } from '../AuthContext.js';  // Asegúrate de proporcionar la ruta correcta
+import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
 
 function LandingPage() {
-  const { idUser } = useContext(AuthContext);  // Accede al idUser desde el contexto
+  const { userId } = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
   const [userData, setUserData] = useState(null);
-  console.log(idUser)
 
   useEffect(() => {
-    if (!idUser) {
-      // Manejar el caso en que idUser no esté disponible (podría redirigir al inicio de sesión)
+    if (!userId) {
+      // Manejar el caso en que userId no esté disponible (podría redirigir al inicio de sesión)
       console.error('ID de usuario no disponible');
+      // Puedes redirigir al usuario a la página de inicio de sesión o hacer otras acciones
       return;
     }
 
-    Axios.get(`http://localhost:5000/usuario/${idUser}`)
+    Axios.get(`http://localhost:5000/usuario/${userId}`)
       .then(response => {
         setUserData(response.data);
       })
       .catch(error => {
         console.error('Error al obtener detalles del usuario:', error);
       });
-  }, [idUser]);
+  }, [userId]);
+
+  if (!userId) {
+    // Puedes redirigir al usuario a la página de inicio de sesión o hacer otras acciones
+    return <div>Usuario no autenticado. Redirigiendo...</div>;
+  }
 
   if (!userData) {
     return <div>Cargando...</div>;
