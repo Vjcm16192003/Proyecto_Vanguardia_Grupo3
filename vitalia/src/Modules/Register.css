@@ -1,16 +1,23 @@
 .scrollable-page {
     height: 100vh;
+    margin-bottom: 25px;
     /*overflow-y: auto;
     /* Remove the duplicate height property */
 }
 
-.container {
+.container1 {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Use min-height instead of height */
     margin-top: 70px;
     margin-bottom: 100px;
+    width: 65vmax;
+	max-width: 100%;
+	min-height: 75vmin;
+    box-shadow: 0 10px 14px #274001;
+    padding: auto;
+    border-radius: 8px;
 }
 
 .registration-box {
@@ -23,11 +30,15 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     margin: 50px; /* Adjust margin top and bottom */
+    padding: auto;
 }
 
-h2 {
+#header-register {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 10px;
+    font-family: 'Anonymous Pro', sans-serif;
+
 }
 
 .form-group {
@@ -61,5 +72,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #236f27;
 }

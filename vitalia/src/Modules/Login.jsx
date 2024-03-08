@@ -1,72 +1,91 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext.js'; // Importa el contexto de autenticación
 import './Login.css';
 
 function Login() {
+  const authContext = React.useContext(AuthContext); // Obtiene el contexto de autenticación
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-
-    console.log("Login component rendered");
-
-    useEffect(() => {
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-
-        // Check if elements exist before attaching event listeners
-        if (signUpButton && signInButton && container) {
-            const handleSignUpClick = (e) => {
-                e.preventDefault();
-                container.classList.add('right-panel-active');
-            };
-
-            const handleSignInClick = (e) => {
-                e.preventDefault();
-                container.classList.remove('right-panel-active');
-            };
-
-            return () => {
-                signUpButton.removeEventListener('click', handleSignUpClick);
-                signInButton.removeEventListener('click', handleSignInClick);
-            };
+  const handleSignIn = () => {
+    // Tu lógica de inicio de sesión
+    fetch('http://localhost:5000/usuario')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error al obtener usuarios');
         }
-    }, []);
+      })
+      .then(users => {
+        const foundUser = users.find(user => user.email === email && user.password === password);
 
-    return (
-        
-        <div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="#">
-			<h1>Sign in</h1>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start your journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div>
-    );
+        if (foundUser) {
+          // Inicio de sesión exitoso, utiliza la función de inicio de sesión del contexto
+          authContext.login(foundUser.user_id);
+          navigate('/landing');
+        } else {
+          // Credenciales incorrectas
+          console.error('Credenciales incorrectas');
+          alert('Credenciales incorrectas');
+        }
+      })
+      .catch(error => {
+        // Manejar errores
+        console.error('Error al iniciar sesión:', error.message);
+      });
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/registrar-user');
+  };
+
+
+  return (
+    <div className="container" id="container">
+      <div className="form-container sign-in-container">
+        <form>
+          <h1>Sign in</h1>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <a href="#">Forgot your password?</a>
+          <button type="button" onClick={handleSignIn}>
+            Sign In
+          </button>
+        </form>
+      </div>
+      <div className="overlay-container">
+        <div className="overlay">
+          <div className="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button className="ghost" id="signIn" onClick={handleSignIn}>
+              Sign In
+            </button>
+          </div>
+          <div className="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start your journey with us</p>
+            <button className="ghost" id="signUp" onClick={handleSignUpClick}>
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Login;
