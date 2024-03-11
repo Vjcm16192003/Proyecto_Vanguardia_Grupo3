@@ -37,6 +37,7 @@ function LandingPage() {
       <h1>Bienvenido, {userData.fullname || 'Usuario'}!</h1>
       <p>ID de usuario: {userData.user_id}</p>
       <p>Correo electrónico: {userData.email}</p>
+      <p>fecha Nacimineto: {userData.date_of_birth}</p>
       {/* Agrega más detalles según sea necesario */}
     </div>
   );
