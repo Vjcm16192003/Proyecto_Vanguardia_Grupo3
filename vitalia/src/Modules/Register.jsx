@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { useNavigate } from 'react-router-dom';
+import Topbar from '../Components/Topbar';
 
 function Register() {
     const navigate = useNavigate();
@@ -121,17 +122,6 @@ function Register() {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="weight">Weight:</label>
-                        <input
-                            type="number"
-                            id="weight"
-                            name="weight"
-                            placeholder="Enter your weight (in kg)"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-group">
                         <label htmlFor="email">Email:</label>
                         <input
                             type="email"
@@ -142,16 +132,6 @@ function Register() {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="dob">Date of Birth:</label>
-                        <input
-                            type="text"  // Cambiado a text
-                            id="dob"
-                            name="date_of_birth"
-                            placeholder="YYYY-MM-DD"
-                            onChange={handleChange}
-                        />
-                    </div>
 
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
@@ -164,6 +144,20 @@ function Register() {
                         />
                     </div>
 
+
+                    <div className="form-group">
+                        <label htmlFor="dob">Date of Birth:</label>
+                        <input
+                            type="text"  // Cambiado a text
+                            id="dob"
+                            name="date_of_birth"
+                            placeholder="YYYY-MM-DD"
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    
+
                     <div className="form-group">
                         <label htmlFor="height">Height:</label>
                         <input
@@ -171,6 +165,18 @@ function Register() {
                             id="height"
                             name="height"
                             placeholder="Enter your height (in cm)"
+                            onChange={handleChange}
+                        />
+                    </div>
+
+
+                    <div className="form-group">
+                        <label htmlFor="weight">Weight:</label>
+                        <input
+                            type="number"
+                            id="weight"
+                            name="weight"
+                            placeholder="Enter your weight (in kg)"
                             onChange={handleChange}
                         />
                     </div>

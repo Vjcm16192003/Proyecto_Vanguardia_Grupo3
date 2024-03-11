@@ -1,0 +1,83 @@
+#nav {
+    display: flex;
+    justify-content: space-between;
+    background: #059318;
+    padding: 0px 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .4);
+    width: 100%;
+    position: fixed; /* Esto fija el nav en la parte superior */
+    top: 0; /* Esto asegura que esté en la parte superior */
+    left: 0; /* Esto asegura que esté en el extremo izquierdo */
+    z-index: 1000; /* Esto asegura que esté por encima de otros elementos */
+}
+
+/* Resto de tu estilo permanece igual */
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+#navbar li a:hover {
+    color: #023b09;
+}
+
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #059318;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+
+#foo {
+    background: #059318;
+    padding: 20px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, .4);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    color: #fff;
+    text-align: center;
+}
+
+
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#footer li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#footer li a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+}
+/* Resto de tu estilo para el footer */

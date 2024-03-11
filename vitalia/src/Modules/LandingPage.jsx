@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
+import './LandingPage.css';  // Importa un archivo CSS para los estilos
 
 function LandingPage() {
   const { userId } = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
@@ -33,13 +34,46 @@ function LandingPage() {
   }
 
   return (
-    <div>
-      <h1>Bienvenido, {userData.fullname || 'Usuario'}!</h1>
-      <p>ID de usuario: {userData.user_id}</p>
-      <p>Correo electrónico: {userData.email}</p>
-      <p>fecha Nacimineto: {userData.date_of_birth}</p>
-      {/* Agrega más detalles según sea necesario */}
-    </div>
+    <>
+
+      <nav id ="nav">
+        <a href="index.html">LOGO</a>
+
+        <div>
+          <ul id = "navbar">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="index.html">Probar AI</a></li>
+            <li><a href="index.html">Registar</a></li>
+            <li><a href="index.html">ver Perfil</a></li>
+          </ul>
+        </div>
+
+      </nav>
+
+
+       
+      <div className="content">
+        <h1>Bienvenido, {userData.fullname || 'Usuario'}!</h1>
+        <p>ID de usuario: {userData.user_id}</p>
+        <p>Correo electrónico: {userData.email}</p>
+        <p>Fecha de Nacimiento: {userData.date_of_birth}</p>
+         
+      </div>
+      
+
+      <footer id ="foo">
+        <div>
+          <ul id = "footer">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="index.html">Probar AI</a></li>
+            <li><a href="index.html">Registar</a></li>
+            <li><a href="index.html">ver Perfil</a></li>
+          </ul>
+        </div>
+
+      </footer>
+
+    </>
   );
 }
 

@@ -1,0 +1,78 @@
+/* Topbar.css */
+
+  .custom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    height: 85px;
+    box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.3);
+    background-color: #1e60a6;
+    color: white;
+  }
+  
+  .nombreUserL {
+    font-size: 18px;
+  }
+  
+  .nomLCs {
+    width: 380px;
+  }
+  
+  .navbar-brand,
+  .nav-item a,
+  .dropdown-item {
+    font-family: 'Montserrat';
+  }
+  
+  .navbar-brand,
+  .nav-item a {
+    color: white;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .navbar-toggler span {
+    color: white !important;
+  }
+  
+  .nav-item:hover,
+  .navbar-toggler {
+    cursor: pointer;
+    color: #00008b !important;
+  }
+  
+  .nav-item {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link {
+    color: aliceblue;
+  }
+  
+  .nav-item-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu.custom-colors.independent {
+    position: absolute;
+    top: 100%;
+    left: 180px;
+    z-index: 1000;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .nomLCs {
+      width: 200px;
+    }
+  
+    .dropdown-menu.custom-colors.independent {
+      left: 20px;
+    }
+  }
+  
