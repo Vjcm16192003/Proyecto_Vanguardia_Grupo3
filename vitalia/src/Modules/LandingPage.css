@@ -56,21 +56,12 @@
 }
 
 #info{
-    margin-top: 35%;
+    margin-top: 45%;
     font-size: 230%;
+    padding-left: 15%;
     text-align: center;
     justify-content: center;
-    position: static;
-}
-
-#paragraph{
-    margin-top: 1%;
-    font-size: 110%;
-    padding-left: 3%;
-    text-align: justify;
-    width: 70%;
-    color: #274001;
-    position: static;
+    position: absolute;
 }
 
 #content {
@@ -99,12 +90,23 @@
 }
 
 #info1{
-    margin-top: 10%;
+    padding-top: 55%;
     font-size: 200%;
     font-weight: bold;
     font-family: sans-serif;
     padding-left: 3%;
     text-align: left;
+    color: #274001;
+    position: absolute;
+}
+
+
+#paragraph{
+    padding-top: 60%;
+    font-size: 110%;
+    padding-left: 3%;
+    text-align: justify;
+    width: 70%;
     color: #274001;
     position: static;
 }

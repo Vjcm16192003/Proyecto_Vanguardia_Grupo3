@@ -74,7 +74,7 @@ function LandingPage() {
 
       <div>
         <h1 id="info1">Our Story</h1>
-        <p id="paragraph">The founders of Vitalia observed the prevailing challenges in the community—generic meal plans that failed to consider individual needs and the detrimental effects of a one-size-fits-all approach to nutrition. Determined to make a difference, they envisioned a platform that would fill this void and provide tailored solutions to each person's unique dietary requirements.</p>
+        <p id="paragraph">The founders of Vitalia observed the prevailing challenges in the community—generic meal plans that failed to consider individual needs and the detrimental effects of a one-size-fits-all approach to nutrition. Determined to make a difference, they envisioned a platform that would fill this void and provide tailored solutions to each person's unique dietary requirements. At the core of Vitalia's creation was a genuine desire to help others achieve optimal health. Recognizing that many struggled with the complexities of nutrition, the founders set out to simplify the process by offering a user-friendly interface. The platform aimed to empower individuals to take control of their well-being by providing personalized nutrition plans that accounted for their specific preferences, dietary restrictions, and wellness goals. Vitalia's story took shape with the intention to be a guiding light for those navigating the often confusing landscape of nutrition. </p>
        <div id="con-image1">
         <img src={imagen} alt="imagen" id="infoImage" />
        </div>
