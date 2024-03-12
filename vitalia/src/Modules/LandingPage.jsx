@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
 import './LandingPage.css';  // Importa un archivo CSS para los estilos
 import fondo from '../Images/fondo.jpg';
-import image2 from '../Images/image2.jpg';
+import imagen from '../Images/LandingPage-image1.jpg';
 
 function LandingPage() {
   const { userId } = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
@@ -40,7 +40,7 @@ function LandingPage() {
       <nav id="nav">
         <a id="logo">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="100" height="80"
+            width="80" height="60"
             viewBox="0 0 242 200"
             preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,200.000000) scale(0.100000,-0.100000)"
@@ -58,8 +58,8 @@ function LandingPage() {
         <div>
           <ul id="navbar">
             <li><a href="index.html">HOME</a></li>
-            <li><a href="index.html">Probar AI</a></li>
-            <li><a href="index.html">Registar</a></li>
+            <li><a href="index.html">STORE</a></li>
+            <li><a href="index.html">RECIPIES</a></li>
           </ul>
         </div>
       </nav>
@@ -69,19 +69,21 @@ function LandingPage() {
       </div>
 
       <div id="content">
-        <h1>Bienvenido, {userData.fullname || 'Usuario'}!</h1>
+        <h1 id="info">WELCOME BACK, {userData.fullname || 'Usuario'}!</h1>
       </div>
 
-
-      <div>HOLA MUNDO</div>
+      <div>
+        <h1 id="info1">Why Vitalia?</h1>
+        <p id="paragraph">At Vitalia, we understand that no two individuals are alike, and that's why our platform stands out. With a simple and user-friendly interface, you can easily choose Vitalia to be your wellness companion. Say goodbye to generic meal plans and welcome a new era of personalized nutrition that aligns with your specific dietary requirements.</p>
+       <div id="con-image1">
+        <img src={imagen} alt="imagen" id="infoImage" />
+       </div>
+      </div>
 
       <footer id="foo">
-        <div>
-          <ul id="footer">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="index.html">STORE</a></li>
-            <li><a href="index.html">RECIPES </a></li>
-          </ul>
+        <div class="footer-rights">
+          <p>© 2023 Vitalia. All Rights Reserved. </p>
+
         </div>
 
       </footer>
