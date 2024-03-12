@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
 import './LandingPage.css';  // Importa un archivo CSS para los estilos
-import fondo from '../Images/fondo.jpg';  // Importa la imagen de fondo
+import fondo from '../Images/fondo.jpg';
+import image2 from '../Images/image2.jpg';
 
 function LandingPage() {
   const { userId } = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
@@ -35,14 +36,13 @@ function LandingPage() {
   }
 
   return (
-    <>
+    <div id="scrollable-page">
       <nav id="nav">
         <a id="logo">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="100" height="80"
             viewBox="0 0 242 200"
             preserveAspectRatio="xMidYMid meet">
-
             <g transform="translate(0.000000,200.000000) scale(0.100000,-0.100000)"
               fill="#000000" stroke="none">
               <path d="M950 1559 c-204 -76 -249 -92 -468 -171 l-92 -33 2 -393 3 -393 70 -28 c39 -15 106 -41 150 -59 44 -17 154 -60 245 -95 250 -99 294 -114 312 -112 20 4 723 262 749 276 18 9 19 28 19 394 0 368 -1 385 -19 394 -11 6 -57 26 -103 45 -45 18 -144 59 -218 89 -74 31 -196 81 -270 111 -74 31 -142 56 -150 56 -8 -1 -112 -37 -230 -81z m445 -25 c247 -102 379 -156 455 -188 l55 -23 5 -199 c3 -109 3 -280 0 -379 l-5 -179 -370 -137 -370 -136 -65 25 c-131 50 -240 93 -460 179 l-225 88 -3 372 c-2 350 -1 373 16 382 10 5 137 53 282 107 146 54 310 114 365 135 55 21 102 38 105 38 2 1 99 -38 215 -85z" />
@@ -64,16 +64,16 @@ function LandingPage() {
         </div>
       </nav>
 
-      <div>
-        
-        <img src={fondo} alt="Fondo" id="fondo"/>
-
+      <div id="con-image">
+        <img src={fondo} alt="Fondo" id="fondo" />
       </div>
 
-      <div className="content">
+      <div id="content">
         <h1>Bienvenido, {userData.fullname || 'Usuario'}!</h1>
       </div>
 
+
+      <div>HOLA MUNDO</div>
 
       <footer id="foo">
         <div>
@@ -86,7 +86,7 @@ function LandingPage() {
 
       </footer>
 
-    </>
+    </div>
   );
 }
 
