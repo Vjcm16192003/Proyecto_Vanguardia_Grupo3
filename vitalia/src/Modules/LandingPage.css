@@ -56,7 +56,7 @@
 }
 
 #info{
-    margin-top: 45%;
+    margin-top: 55%;
     font-size: 230%;
     padding-left: 15%;
     text-align: center;
@@ -90,25 +90,28 @@
 }
 
 #info1{
-    padding-top: 55%;
-    font-size: 200%;
+    padding-top: 65%;
+    font-size: 180%;
     font-weight: bold;
     font-family: sans-serif;
     padding-left: 3%;
     text-align: left;
     color: #274001;
     position: absolute;
+    padding-left: 5%;
 }
 
 
 #paragraph{
-    padding-top: 60%;
+    padding-top: 70%;
     font-size: 110%;
-    padding-left: 3%;
+    padding-left: 5%;
     text-align: justify;
     width: 70%;
     color: #274001;
-    position: static;
+    position: relative;
+    line-height: 2.0;
+    padding-right: 10%;
 }
 
 #con-image1 {
