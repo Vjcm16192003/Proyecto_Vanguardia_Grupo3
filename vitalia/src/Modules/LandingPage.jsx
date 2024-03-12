@@ -73,8 +73,8 @@ function LandingPage() {
       </div>
 
       <div>
-        <h1 id="info1">Why Vitalia?</h1>
-        <p id="paragraph">At Vitalia, we understand that no two individuals are alike, and that's why our platform stands out. With a simple and user-friendly interface, you can easily choose Vitalia to be your wellness companion. Say goodbye to generic meal plans and welcome a new era of personalized nutrition that aligns with your specific dietary requirements.</p>
+        <h1 id="info1">Our Story</h1>
+        <p id="paragraph">The founders of Vitalia observed the prevailing challenges in the community—generic meal plans that failed to consider individual needs and the detrimental effects of a one-size-fits-all approach to nutrition. Determined to make a difference, they envisioned a platform that would fill this void and provide tailored solutions to each person's unique dietary requirements.</p>
        <div id="con-image1">
         <img src={imagen} alt="imagen" id="infoImage" />
        </div>
