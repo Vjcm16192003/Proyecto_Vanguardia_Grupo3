@@ -5,7 +5,7 @@
   }
 
 #header {
-    padding-top: 60vw; /* Utilizamos viewport height (vh) para un padding relativo al 25% de la altura de la ventana */
+    padding-top: 80vw; /* Utilizamos viewport height (vh) para un padding relativo al 25% de la altura de la ventana */
     padding-bottom: 5vh;
     text-align: center; /* Utilizamos text-align para centrar el texto horizontalmente */
     justify-content: center;

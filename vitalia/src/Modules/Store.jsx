@@ -3,6 +3,15 @@ import Axios from 'axios';
 import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
 import './Store.css';  // Importa un archivo CSS para los estilos
 import { useNavigate } from 'react-router-dom';
+import rice from '../Images/rice.jpeg';
+import quinoa from '../Images/quinoa.jpeg';
+import kale from '../Images/kale.jpeg';
+import avocado from '../Images/avocado.jpeg';
+import chia from '../Images/chia.jpeg';
+import spinach from '../Images/spinach.jpeg';
+import blueberries from '../Images/blueberries.jpeg';
+import watermelon from '../Images/watermelon.jpg';
+
 
 
 
@@ -10,7 +19,7 @@ function Store() {
 
     const [cartItems, setCartItems] = useState([]);
     const [quotingEnabled, setQuotingEnabled] = useState(false);
-    const [headerPaddingTop, setHeaderPaddingTop] = useState(quotingEnabled ? '10vw' : '60vw');
+    const [headerPaddingTop, setHeaderPaddingTop] = useState(quotingEnabled ? '0vw' : '55vw');
 
 
     const addToCart = (product) => {
@@ -44,22 +53,23 @@ function Store() {
 
     const toggleQuoting = () => {
         setQuotingEnabled(!quotingEnabled);
-        setHeaderPaddingTop(quotingEnabled ? '60vw' : '100vw');
+        setHeaderPaddingTop(quotingEnabled ? '120vw' : '100vw');
     };
 
     const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
     const products = [
-        { id: 1, name: 'Arroz Integral', description: 'Arroz integral orgánico', price: 5.99, category: 'Granos' },
-        { id: 2, name: 'Lechuga Orgánica', description: 'Lechuga fresca y orgánica', price: 2.99, category: 'Vegetales' },
-        { id: 3, name: 'Manzana Orgánicas', description: 'Manzanas dulces y orgánicas', price: 3.49, category: 'Frutas' },
-        { id: 4, name: 'Arroz Integral', description: 'Arroz integral orgánico', price: 5.99, category: 'Granos' },
-        { id: 5, name: 'Arroz Integral', description: 'Arroz integral orgánico', price: 5.99, category: 'Granos' },
-        { id: 6, name: 'Lechuga Orgánica', description: 'Lechuga fresca y orgánica', price: 2.99, category: 'Vegetales' },
-        { id: 7, name: 'Manzana Orgánicas', description: 'Manzanas dulces y orgánicas', price: 3.49, category: 'Frutas' },
-        { id: 8, name: 'Arroz Integral', description: 'Arroz integral orgánico', price: 5.99, category: 'Granos' },
-        { id: 9, name: 'Arroz Integral', description: 'Arroz integral orgánico', price: 5.99, category: 'Granos' },
+        { id: 1, name: 'Organic Brown Rice', description: 'Premium organic brown rice', price: 7.99, category: 'Grains', image: rice },
+        { id: 2, name: 'Organic Quinoa', description: 'Certified organic quinoa grains', price: 9.99, category: 'Grains', image: quinoa },
+        { id: 3, name: 'Organic Kale', description: 'Fresh and nutritious organic kale', price: 3.49, category: 'Vegetables', image: kale },
+        { id: 4, name: 'Organic Avocado', description: 'Ripe and creamy organic avocados', price: 2.99, category: 'Fruits', image: avocado },
+        { id: 5, name: 'Organic Chia Seeds', description: 'High-quality organic chia seeds', price: 6.49, category: 'Seeds', image: chia },
+        { id: 6, name: 'Organic Spinach', description: 'Organic baby spinach leaves', price: 4.99, category: 'Vegetables', image: spinach },
+        { id: 7, name: 'Organic Blueberries', description: 'Sweet and juicy organic blueberries', price: 5.99, category: 'Fruits', image: blueberries },
+        { id: 8, name: 'Organic Watermelon', description: 'Delicious organic watermelon', price: 10.99, category: 'Fruits', image: watermelon },
     ];
+    
+    
 
 
     const navigate = useNavigate();
@@ -124,15 +134,20 @@ function Store() {
                     <div key={product.id} className="product-wrapper">
                         <div className="product-item">
                             <div className="product-item-content">
-                                <h2 id="tittle">{product.name}</h2>
-                                <p id="name">{product.description}</p>
-                                <p id="price">{`Precio: $${product.price.toFixed(2)}`}</p>
-                                <div className="quantity">
-                                    <button onClick={() => decreaseQuantity(product)}>-</button>
-                                    <span>{cartItems.find((item) => item.id === product.id)?.quantity || 0}</span>
-                                    <button onClick={() => addToCart(product)}>+</button>
+
+
+                                <img src={product.image} alt={product.name} style={{ width: '200px', height: '150px', objectFit: 'cover', paddingLeft: '10%'}}  />
+                                <div>
+                                    <h2 id="tittle">{product.name}</h2>
+                                    <p id="name">{product.description}</p>
+                                    <p id="price">{`Precio: $${product.price.toFixed(2)}`}</p>
+                                    <div className="quantity">
+                                        <button onClick={() => decreaseQuantity(product)}>-</button>
+                                        <span>{cartItems.find((item) => item.id === product.id)?.quantity || 0}</span>
+                                        <button onClick={() => addToCart(product)}>+</button>
+                                    </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
