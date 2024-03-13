@@ -1,61 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
-import './LandingPage.css';  // Importa un archivo CSS para los estilos
-import fondo from '../Images/fondo.jpg';
+import './UpdatePerfil.css';  // Importa un archivo CSS para los estilos
 import { useNavigate } from 'react-router-dom';
-import imagen from '../Images/LandingPage-image1.jpg';
-
-function LandingPage() {
-  const { userId } = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
-  const [userData, setUserData] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!userId) {
-      // Manejar el caso en que userId no esté disponible (podría redirigir al inicio de sesión)
-      console.error('ID de usuario no disponible');
-      // Puedes redirigir al usuario a la página de inicio de sesión o hacer otras acciones
-      return;
-    }
-
-    Axios.get(`http://localhost:5000/usuario/${userId}`)
-      .then(response => {
-        setUserData(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener detalles del usuario:', error);
-      });
-  }, [userId]);
-
-  if (!userId) {
-    // Puedes redirigir al usuario a la página de inicio de sesión o hacer otras acciones
-    return <div>Usuario no autenticado. Redirigiendo...</div>;
-  }
-
-  if (!userData) {
-    return <div>Cargando...</div>;
-  }
 
 
-  const handleStore = () => {
-    navigate('/store');
-};
 
-const handleRecipe = () => {
-  navigate('/recipe');
-};
+function UpdatePerfil(){
+
+    
+    const navigate = useNavigate();
+
+    const handleLanding = () => {
+        navigate('/landing');
+    };
+    
+    const handleRecipe = () => {
+      navigate('/recipe');
+    };
 
 
-const handleLanding = () => {
-  navigate('/landing');
-};
-
-const handlePerfil = () => {
-  navigate('/perfil');
-};
-  return (
-    <div id="scrollable-page">
+    const handleStore = () => {
+        navigate('/store');
+    };
+    
+    const handlePerfil = () => {
+        navigate('/perfil');
+      };
+    return(
+        <div id="scrollable-page">
       <nav id="nav">
         <a id="logo">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -79,41 +52,24 @@ const handlePerfil = () => {
             <li><a onClick={handleLanding}>HOME</a></li>
             <li><a onClick={handleStore}>STORE</a></li>
             <li><a onClick={handleRecipe}>RECIPES</a></li>
-            <li><a onClick={handlePerfil}>SEE PROFILE</a></li>
+            <li><a onClick={handlePerfil}>VER PERFIL</a></li>
           </ul>
         </div>
       </nav>
 
-      <div id="con-image">
-        <img src={fondo} alt="Fondo" id="fondo" />
-      </div>
-
-      <div id="content">
-        <h1 id="info">WELCOME BACK, {userData.fullname || 'Usuario'}!</h1>
-      </div>
-
-      <div>
-        <h1 id="info1">Our Story</h1>
-        <p id="paragraph">The founders of Vitalia observed the prevailing challenges in the community—generic meal plans that failed to consider individual needs and the detrimental effects of a one-size-fits-all approach to nutrition. Determined to make a difference, they envisioned a platform that would fill this void and provide tailored solutions to each person's unique dietary requirements. At the core of Vitalia's creation was a genuine desire to help others achieve optimal health. Recognizing that many struggled with the complexities of nutrition, the founders set out to simplify the process by offering a user-friendly interface. The platform aimed to empower individuals to take control of their well-being by providing personalized nutrition plans that accounted for their specific preferences, dietary restrictions, and wellness goals. Vitalia's story took shape with the intention to be a guiding light for those navigating the often confusing landscape of nutrition. </p>
-       <div id="con-image1">
-        <img src={imagen} alt="imagen" id="infoImage" />
-       </div>
-      </div>
-
-
-    <div>Hola Mundo</div>
+      
 
 
       <footer id="foo">
         <div class="footer-rights">
-          <p>© 2024 Vitalia. All Rights Reserved. </p>
+          <p>© 2023 Vitalia. All Rights Reserved. </p>
 
         </div>
 
       </footer>
 
     </div>
-  );
+    );
 }
 
-export default LandingPage;
+export default UpdatePerfil;

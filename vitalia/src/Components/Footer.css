@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+
+
+
+.custom-footer {
+    font-family: 'Montserrat';
+    color: white;
+    transition: all 0.3 ease;
+    align-content: center;
+    box-shadow: -0.2em -0.2em 0.5em rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.footer-info {
+    font-family: 'Montserrat';
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+}
+
+.custom-colors {
+    background-color: #1E60A6;
+    color: white !important;
+}
+
+.spacing {
+    padding-bottom: 5px;
+}
+
+.smalltext-copyright {
+    font-size: small;
+}

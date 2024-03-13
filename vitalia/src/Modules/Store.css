@@ -1,0 +1,199 @@
+
+#scrollable-page {
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+#header {
+    padding-top: 80vw; /* Utilizamos viewport height (vh) para un padding relativo al 25% de la altura de la ventana */
+    padding-bottom: 5vh;
+    text-align: center; /* Utilizamos text-align para centrar el texto horizontalmente */
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+
+
+#catalog-container {
+    display: grid;
+    grid-template-columns: repeat(4,  1fr); /* Muestra hasta 4 elementos por línea */
+    grid-gap: 20px;
+    align-items: center;
+    margin: 0 35px;
+    margin-bottom: 20px;
+  }
+  
+  #transaction-container {
+    justify-content: center;
+    margin-top: 5%;
+    margin-left: 40px;
+  }
+  
+  #transaction-button {
+    background-color: #89c561; /* Cambiar el color a tu preferencia */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.5s;
+    justify-content: center;
+    margin-left: 40%;
+    margin-bottom: 80px;
+    font-family: 'Montserrat';
+  }
+
+.product-wrapper {
+    width: 90%;
+    /* Ajusta según tus necesidades */
+    margin: 20px;
+}
+
+.product-item {
+    background-color: rgb(83, 111, 35);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-item-content {
+    padding: 35px;
+}
+
+#tittle {
+    font-size: 20px;
+    /* Ajusta según tus necesidades */
+    margin-bottom: 15px;
+    padding-right: 5%;
+    padding-left: 5%;
+    justify-content: center;
+    color: #fff;
+    font-weight: 500;
+}
+
+#name {
+    font-size: 16px;
+    /* Ajusta según tus necesidades */
+    margin-bottom: 25px;
+    margin-top: 25px;
+    /* Ajusta según tus necesidades */
+    justify-content: center;
+    margin-left: 30px;
+    color: #fff;
+}
+
+#price {
+    font-size: 16px;
+    /* Ajusta según tus necesidades */
+    margin-bottom: 25px;
+    margin-top: 25px;
+    /* Ajusta según tus necesidades */
+    justify-content: center;
+    margin-left: 60px;
+    color: #fff;
+}
+
+.add-to-cart-button {
+    margin-top: 10px;
+    /* Ajusta según tus necesidades */
+}
+
+
+.product-item .quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    /* Cambiado a píxeles para mejor precisión */
+    font-family: 'Montserrat';
+}
+
+.product-item .quantity button {
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: rgb(71, 90, 37);
+    /* Cambiado a verde oliva */
+    border: none;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-item .quantity button:hover {
+    background-color: #555;
+}
+
+.product-item .quantity span {
+    margin: 0 12px;
+    font-size: 15px;
+}
+
+
+#quoting-container {
+    background-color: #fff;
+    border: 10px solid #89c561;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-left: 25%; 
+    margin-right: 25%;
+    transition: transform 0.5s ease;
+    margin-bottom: 10%;
+  }
+  
+  #quoting-container:hover {
+    transform: translateY(-5px);
+  }
+  
+  #quoting-item {
+    display: flex;
+    /*align-items: center; /* Centra verticalmente los elementos */
+    margin: 35px 0;
+    font-size: 18px;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 8px;
+    font-family: 'Montserrat';
+  }
+
+  #quoting-item-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: auto;
+    font-family: 'Montserrat';
+  }
+  
+  
+  #quoting-item-total {
+    font-size: 20px;
+   /* margin-left: auto; /* Empuja el total al extremo derecho */
+    font-weight: bold;
+    margin-left: 15px;
+    font-family: 'Montserrat';
+  }
+
+  #quoting-item-separator {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0; /* Línea divisoria */
+  }
+
+  #total-amount {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    margin-top: 40px;
+    font-size: 24px;
+    font-family: 'Montserrat';
+    margin-top: 15%;
+    margin-left: 5%;
+  }
