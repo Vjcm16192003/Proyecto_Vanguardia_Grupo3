@@ -79,7 +79,7 @@ const handlePerfil = () => {
             <li><a onClick={handleLanding}>HOME</a></li>
             <li><a onClick={handleStore}>STORE</a></li>
             <li><a onClick={handleRecipe}>RECIPES</a></li>
-            <li><a onClick={handlePerfil}>VER PERFIL</a></li>
+            <li><a onClick={handlePerfil}>SEE PROFILE</a></li>
           </ul>
         </div>
       </nav>
@@ -106,7 +106,7 @@ const handlePerfil = () => {
 
       <footer id="foo">
         <div class="footer-rights">
-          <p>© 2023 Vitalia. All Rights Reserved. </p>
+          <p>© 2024 Vitalia. All Rights Reserved. </p>
 
         </div>
 

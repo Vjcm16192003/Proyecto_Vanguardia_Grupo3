@@ -117,7 +117,7 @@ function Store() {
                         <li><a onClick={handleLanding}>HOME</a></li>
                         <li><a onClick={handleStore}>STORE</a></li>
                         <li><a onClick={handleRecipe}>RECIPES</a></li>
-                        <li><a onClick={handlePerfil}>VER PERFIL</a></li>
+                        <li><a onClick={handlePerfil}>SEE PROFILE</a></li>
                     </ul>
                 </div>
             </nav>
@@ -126,7 +126,7 @@ function Store() {
 
             {/*Aqui va todo el Contenido*/}
 
-            <div id="header" style={{ paddingTop: headerPaddingTop }}>CATÁLOGO DE PRODUCTOS ORGÁNICOS</div>
+            <div id="header" style={{ paddingTop: headerPaddingTop }}>ORGANIC PRODUCTS CATALOG</div>
             <div id="empty-space-top"></div>
 
             <div id="catalog-container" >
@@ -158,12 +158,12 @@ function Store() {
             {/* Carrito de Compras */}
             <div id="transaction-container">
                 <button id="transaction-button" onClick={toggleQuoting}>
-                    {quotingEnabled ? 'Cancelar Cotización' : 'Cotizar Productos'}
+                    {quotingEnabled ? 'Cancel Quote' : 'Quote Products'}
                 </button>
             </div>
             {quotingEnabled && (
                 <div id="quoting-container">
-                    <h3>Cotización</h3>
+                    <h3>Quote</h3>
                     {cartItems.map((item, index) => (
                         <div key={item.id} id="quoting-item">
                             <span id="quoting-item-name">{item.name}</span>
@@ -183,7 +183,7 @@ function Store() {
 
             <footer id="foo">
                 <div class="footer-rights">
-                    <p>© 2023 Vitalia. All Rights Reserved. </p>
+                    <p>© 2024 Vitalia. All Rights Reserved. </p>
 
                 </div>
 
