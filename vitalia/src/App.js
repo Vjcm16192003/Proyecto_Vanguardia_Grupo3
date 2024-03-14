@@ -4,10 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Modules/Login.jsx";
 import Register from "./Modules/Register.jsx";
 import LandingPage from "./Modules/LandingPage.jsx";
+import AIPage from "./Modules/AIPage.jsx"
 
 function App() {
-  console.log("App component rendered");
-  
   return (
     <div className="App">
       <BrowserRouter>
@@ -15,6 +14,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/registrar-user" element={<Register />} />
           <Route path="/landing" element={<LandingPage />} />
+          <Route path="/AI" element={<AIPage />} />
         </Routes>
       </BrowserRouter>
     </div>
