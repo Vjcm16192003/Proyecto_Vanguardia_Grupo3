@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Modules/Login.jsx";
 import Register from "./Modules/Register.jsx";
 import LandingPage from "./Modules/LandingPage.jsx";
-import AIPage from "./Modules/AIPage.jsx"
+import AIPage from "./Modules/AIpage.jsx"
 
 function App() {
   return (
