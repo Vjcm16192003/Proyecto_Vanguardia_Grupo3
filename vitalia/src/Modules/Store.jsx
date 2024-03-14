@@ -20,7 +20,14 @@ function Store() {
     const [cartItems, setCartItems] = useState([]);
     const [quotingEnabled, setQuotingEnabled] = useState(false);
     const [headerPaddingTop, setHeaderPaddingTop] = useState(quotingEnabled ? '0vw' : '55vw');
+    const { logout } = useContext(AuthContext);
 
+
+    const handleSignOutClick = () => {
+        localStorage.clear();
+        navigate('/');
+        logout();
+    };
 
     const addToCart = (product) => {
         const existingItem = cartItems.find((item) => item.id === product.id);
@@ -68,8 +75,8 @@ function Store() {
         { id: 7, name: 'Organic Blueberries', description: 'Sweet and juicy organic blueberries', price: 5.99, category: 'Fruits', image: blueberries },
         { id: 8, name: 'Organic Watermelon', description: 'Delicious organic watermelon', price: 10.99, category: 'Fruits', image: watermelon },
     ];
-    
-    
+
+
 
 
     const navigate = useNavigate();
@@ -117,7 +124,13 @@ function Store() {
                         <li><a onClick={handleLanding}>HOME</a></li>
                         <li><a onClick={handleStore}>STORE</a></li>
                         <li><a onClick={handleRecipe}>RECIPES</a></li>
-                        <li><a onClick={handlePerfil}>SEE PROFILE</a></li>
+                        <li class="dropdown">
+                            <a href="#">PROFILE</a>
+                            <div class="dropdown-content">
+                                <a onClick={handlePerfil}>EDIT PROFILE</a>
+                                <a onClick={handleSignOutClick}>LOGOUT</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -136,7 +149,7 @@ function Store() {
                             <div className="product-item-content">
 
 
-                                <img src={product.image} alt={product.name} style={{ width: '200px', height: '150px', objectFit: 'cover', paddingLeft: '10%'}}  />
+                                <img src={product.image} alt={product.name} style={{ width: '200px', height: '150px', objectFit: 'cover', paddingLeft: '10%' }} />
                                 <div>
                                     <h2 id="tittle">{product.name}</h2>
                                     <p id="name">{product.description}</p>

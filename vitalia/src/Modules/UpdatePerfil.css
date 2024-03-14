@@ -1,0 +1,72 @@
+.scrollable-page1 {
+    
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+    width: 65vmax;
+    box-shadow: 0 8px 12px #274001;
+    padding-top: 15vw;
+    border-radius: 8px;
+    padding-bottom: 5vw;
+}
+
+.registration-box1 {
+    width: 90%; /* Use percentage for better responsiveness */
+    max-width: 600px;
+    box-sizing: border-box; /* Include padding and border in the total width */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 50px; /* Adjust margin top and bottom */
+    padding: auto;
+}
+
+#update-header {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-family: 'Anonymous Pro', sans-serif;
+
+}
+
+.form-group1 {
+    display: flex;
+    flex-direction: column; /* Adjusted to make labels and inputs stack vertically */
+    margin-bottom: 20px;
+}
+
+.form-group1 label {
+    margin-bottom: 5px; /* Add a small margin below the label for spacing */
+}
+
+.form-group1 input,
+.form-group1 select {
+    padding: 10px;
+    margin-bottom: 10px; /* Add margin-bottom for spacing between inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #A5BF7E;
+}
+
+.button1 {
+    padding: 10px 20px;
+    background-color: #30402D;
+    ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button1:hover {
+    background-color: #236f27;
+}
