@@ -6,29 +6,138 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function UpdatePerfil(){
-
-    
-    const navigate = useNavigate();
-
-    const handleLanding = () => {
-        navigate('/landing');
-    };
-    
-    const handleRecipe = () => {
-      navigate('/recipe');
-    };
+function UpdatePerfil() {
 
 
-    const handleStore = () => {
-        navigate('/store');
-    };
-    
-    const handlePerfil = () => {
-        navigate('/perfil');
-      };
-    return(
-        <div id="scrollable-page">
+  const navigate = useNavigate();
+  const { userId, logout } = useContext(AuthContext);
+  // Inicializa userData como null hasta que se carguen los datos
+  const [isLoading, setIsLoading] = useState(true); // Para mostrar un indicador de carga mientras se obtienen los datos
+
+  const [allergyCount, setAllergyCount] = useState(0); // Estado para contar los campos de alergias
+
+  const [userData, setUserData] = useState({
+    height: 0,
+    weight: 0,
+    diet_type: 'Normal',
+    allergies: [],
+  });
+
+
+  useEffect(() => {
+    if (userId) {
+      // Llamada a la API para obtener los datos del usuario específico
+      Axios.get(`http://localhost:5000/usuario/${userId}`)
+        .then(response => {
+          setUserData(response.data); // Actualiza el estado con los datos del usuario
+          setIsLoading(false); // Indica que la carga ha finalizado
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, [userId]); // Ejecuta el efecto solo cuando userId cambia
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+
+  const handleClickUpdate = () => {
+    handleUpdate(userData);
+};
+
+
+  console.log("Datos a actualizar:", {
+    weight: userData.weight,
+    height: userData.height,
+    diet_type: userData.diet_type,
+    allergies: userData.allergies
+  });
+
+  const handleUpdate = (userData) => {
+    console.log("Datos a actualizar:", {
+        weight: userData.weight,
+        height: userData.height,
+        diet_type: userData.diet_type,
+        allergies: userData.allergies
+    });
+
+    Axios.put(`http://localhost:5000/usuario/${userId}`, userData)
+        .then(response => {
+            console.log('Datos actualizados exitosamente:', response.data);
+            alert('Datos actualizados con éxito');
+            navigate('/perfil');
+        })
+        .catch(error => {
+            console.error('Error al actualizar los datos del usuario:', error);
+            alert('Error al actualizar los datos del usuario. Por favor, inténtalo de nuevo.');
+        });
+};
+
+
+
+
+  const handleLanding = () => {
+    navigate('/landing');
+  };
+
+  const handleRecipe = () => {
+    navigate('/recipe');
+  };
+
+
+  const handleStore = () => {
+    navigate('/store');
+  };
+
+  const handlePerfil = () => {
+    navigate('/perfil');
+  };
+
+
+  const handleSignOutClick = () => {
+    localStorage.clear();
+    navigate('/');
+    logout();
+  };
+
+
+  const handleAllergiesChange = (e, index) => {
+    const newAllergies = [...userData.allergies];
+    newAllergies[index] = e.target.value;
+    setUserData({ ...userData, allergies: newAllergies });
+  };
+
+  const handleAddAllergyField = () => {
+    setUserData({ ...userData, allergies: [...userData.allergies, ''] });
+    setAllergyCount(prevCount => prevCount + 1); // Incrementar la cuenta de alergias
+  };
+
+  const handleRemoveAllergyField = index => {
+    const newAllergies = [...userData.allergies];
+    newAllergies.splice(index, 1);
+    setUserData({ ...userData, allergies: newAllergies });
+    setAllergyCount(prevCount => prevCount - 1); // Decrementar la cuenta de alergias
+  };
+
+  const [newAllergy, setNewAllergy] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+
+  const handleAddAllergy = () => {
+    setUserData({
+      ...userData,
+      allergies: [...userData.allergies, newAllergy],
+    });
+    setNewAllergy('');
+  };
+
+  const [error, setError] = useState('');
+
+  return (
+    <div id="scrollable-page1">
       <nav id="nav">
         <a id="logo">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -52,24 +161,95 @@ function UpdatePerfil(){
             <li><a onClick={handleLanding}>HOME</a></li>
             <li><a onClick={handleStore}>STORE</a></li>
             <li><a onClick={handleRecipe}>RECIPES</a></li>
-            <li><a onClick={handlePerfil}>VER PERFIL</a></li>
+            <li class="dropdown">
+              <a href="#">PROFILE</a>
+              <div class="dropdown-content">
+                <a onClick={handlePerfil}>EDIT PROFILE</a>
+                <a onClick={handleSignOutClick}>LOGOUT</a>
+              </div>
+            </li>
           </ul>
         </div>
       </nav>
 
-      
+
+
+      <div className="container2"style={{ paddingTop: `${20 + 8 * allergyCount}vw` }}>
+        <div className="registration-box1">
+          <h2 id="header-update">Update Profile</h2>
+
+
+          <div className="form-group1">
+            <label htmlFor="height">Height:</label>
+            <input
+              type="number"
+              id="height"
+              name="height"
+              value={userData.height}
+              onChange={handleChange}
+              placeholder="Enter your height"
+            />
+          </div>
+
+          <div className="form-group1">
+            <label htmlFor="weight">Weight:</label>
+            <input
+              type="number"
+              id="weight"
+              name="weight"
+              value={userData.weight}
+              onChange={handleChange}
+              placeholder="Enter your weight"
+            />
+          </div>
+
+          <div className="form-group1">
+            <label htmlFor="diet_type">Diet Type:</label>
+            <select
+              id="diet_type"
+              name="diet_type"
+              onChange={handleChange}
+              value={userData.diet_type}
+            >
+              <option value="Vegan">Vegan</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Normal">Normal</option>
+            </select>
+          </div>
+
+          <div className="form-group1">
+            <label htmlFor="allergies">Allergies:</label>
+            {userData.allergies.map((allergy, index) => (
+              <div key={index}>
+                <input
+                  type="text"
+                  value={allergy}
+                  onChange={e => handleAllergiesChange(e, index)}
+                  placeholder="Enter an allergy"
+                />
+                {index > 0 && (
+                  <button type="button3" onClick={() => handleRemoveAllergyField(index)}>Remove</button>
+                )}
+              </div>
+            ))}
+            <button type="button2" onClick={handleAddAllergyField}>Add Allergy</button>
+          </div>
+
+          <button type="button1" onClick={handleClickUpdate}>Update Data</button>
+        </div>
+      </div>
 
 
       <footer id="foo">
         <div class="footer-rights">
-          <p>© 2023 Vitalia. All Rights Reserved. </p>
+          <p>© 2024 Vitalia. All Rights Reserved. </p>
 
         </div>
 
       </footer>
 
     </div>
-    );
+  );
 }
 
 export default UpdatePerfil;

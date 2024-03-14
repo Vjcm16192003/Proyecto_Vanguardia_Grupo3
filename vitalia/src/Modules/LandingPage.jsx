@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import imagen from '../Images/LandingPage-image1.jpg';
 
 function LandingPage() {
-  const { userId } = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
+  const { userId, logout} = useContext(AuthContext);  // Corrige el nombre de la propiedad a userId
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
@@ -37,6 +37,13 @@ function LandingPage() {
     return <div>Cargando...</div>;
   }
 
+
+
+  const handleSignOutClick = () => {
+    localStorage.clear();
+    navigate('/');
+    logout();
+};
 
   const handleStore = () => {
     navigate('/store');
@@ -79,7 +86,13 @@ const handlePerfil = () => {
             <li><a onClick={handleLanding}>HOME</a></li>
             <li><a onClick={handleStore}>STORE</a></li>
             <li><a onClick={handleRecipe}>RECIPES</a></li>
-            <li><a onClick={handlePerfil}>SEE PROFILE</a></li>
+            <li class="dropdown">
+                <a href="#">PROFILE</a>
+                <div class="dropdown-content">
+                    <a onClick={handlePerfil}>EDIT PROFILE</a>
+                    <a onClick={handleSignOutClick}>LOGOUT</a>
+                </div>
+            </li>
           </ul>
         </div>
       </nav>

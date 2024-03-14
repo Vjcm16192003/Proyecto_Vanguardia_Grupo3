@@ -24,7 +24,22 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUserId(null);
     setLoggedIn(false);
+    setLoggedIn(false);
+    localStorage.clear();
+    window.location.reload(); // Reload the page after signing out
   };
+
+  /*
+
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+    setUserType('normal');
+    setIsAlertShown(false);
+    localStorage.clear();
+    clearTimeout(timerIdRef.current);
+    window.location.reload(); // Reload the page after signing out
+  };
+  */
 
   return (
     <AuthContext.Provider value={{ userId, loggedIn, login, logout }}>
