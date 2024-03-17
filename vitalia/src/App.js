@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<AIPage />} />
           <Route path="/registrar-user" element={<Register />} />
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/AI" element={<AIPage />} />

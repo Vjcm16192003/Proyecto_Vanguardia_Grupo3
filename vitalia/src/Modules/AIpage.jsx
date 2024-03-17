@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
-import { Button } from 'antd';
 import './AIpage.css';
 
 function TrainingComponent() {
   const [model, setModel] = useState(null);
   const [X, setX] = useState(0);
   const [Y, setY] = useState(0);
+  const [resultMessage, setResultMessage] = useState("");
+
+  const [predict, setPredict] = useState({
+    age : 0, 
+    weight: 0 , 
+    height: 0, 
+    sex: 0, 
+    physicalActivity:0
+});
 
   const x1 = [
     [93, 56, 154, 1, 3],
@@ -937,19 +945,20 @@ function TrainingComponent() {
     model.save('localstorage://mymodel').then(
     );
     //model.save('downloads://my_model');
+    console.log("modelo guardado")
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let updatedValue = isNaN(parseFloat(value)) ? value : parseFloat(value);
+    setPredict({ ...predict, [name]: updatedValue });
   };
 
   const handlePredict = async () => {
     //hacer prediccion predeterminada
-    const age = 25;
-    const weight = 48;
-    const height = 165;
-    const sex = 1;
-    const physicalActivity = 1;
-    const inputData = tf.tensor([[age, weight, height, sex, physicalActivity]]);
+    const inputData = tf.tensor([[predict.age, predict.weight, predict.height, predict.sex, predict.physicalActivity]]);
     const prediction = model.predict(inputData);
-    console.log("la cantidad de calorias que deberias ingerir diario es: ");
-    console.log(prediction.dataSync()[0])
+    setResultMessage(`La cantidad de calorías que deberías ingerir diariamente es: ${prediction.dataSync()[0].toFixed(2)}`);
   };
 
   const cargarModelo = async () => {
@@ -960,28 +969,29 @@ function TrainingComponent() {
 
 
   return (
-
     <div id="container">
       <div id="button-container">
-        <button onClick={trainModel}>Entrenar modelo</button>
-        <button onClick={guardarmodelo}>Guardar modelo</button>
-        <button onClick={cargarModelo}>Cargar modelo</button>
+        <button onClick={trainModel}>Train model</button>
+        <button onClick={guardarmodelo}>Save model</button>
+        <button onClick={cargarModelo}>Load model</button>
       </div>
       <div id="input-container1">
-        <input type="number" placeholder="Edad" id="age" />
-        <input type="number" placeholder="Peso" id="weight" />
-        <input type="number" placeholder="Altura" id="height" />
-        <select id="sex">
-          <option value="0">Masculino</option>
-          <option value="1">Femenino</option>
+        <input type="number" placeholder="Age" id="age" name="age" onChange={handleChange}/>
+        <input type="number" placeholder="Weight (in kg)" id="weight" name="weight" onChange={handleChange}/>
+        <input type="number" placeholder="Height (in cm)" id="height" name="height" onChange={handleChange}/>
+        <select id="sex" name="sex" value={predict.sex} onChange={handleChange}>
+          <option value="0">Male</option>
+          <option value="1">Female</option>
         </select>
-        <select id="physical-activity">
-          <option value="1">Sedentario</option>
-          <option value="2">Moderado</option>
-          <option value="3">Activo</option>
+        <select id="physical-activity" name="physicalActivity" value={predict.physicalActivity} onChange={handleChange}>
+          <option value="1">Sedentary</option>
+          <option value="2">Moderately active</option>
+          <option value="3">Athletic</option>
         </select>
       </div>
       <button id="predict-button" onClick={handlePredict}>Predecir modelo</button>
+      <br/>
+      <center><h1>{resultMessage}</h1></center>
     </div>
 
   );
