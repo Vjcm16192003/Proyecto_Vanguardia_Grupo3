@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import './AIpage.css';
 
-function TrainingComponent() {
+function AIPage() {
   const [model, setModel] = useState(null);
   const [X, setX] = useState(0);
   const [Y, setY] = useState(0);
@@ -997,6 +997,6 @@ function TrainingComponent() {
   );
 }
 
-export default TrainingComponent;
+export default AIPage;
 
 

@@ -2,22 +2,10 @@ import React, { useState } from 'react';
 import './Register.css';
 import { useNavigate } from 'react-router-dom';
 
-function Register() {
+function Register({formData,setFormData}) {
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
-
-    const [formData, setFormData] = useState({
-        fullName: '',
-        weight: 0,
-        email: '',
-        date_of_birth: '',
-        password: '',
-        height: 0,
-        gender: 'male',
-        diet_type: 'Normal',
-        allergies: [""],
-    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -202,6 +190,14 @@ function Register() {
                         </select>
                     </div>
 
+                    <div className="form-group">
+                        <label htmlFor="physical-activity">physical activity:</label>
+                        <select id="diet_type" name="physicalActivity" value={formData.physicalActivity} onChange={handleChange}>
+                            <option value="1">Sedentary</option>
+                            <option value="2">Moderately active</option>
+                            <option value="3">Athletic</option>
+                        </select>
+                    </div>
                     <button type="button" onClick={handleRegister}>Sign Up</button>
                 </div>
             </div>
