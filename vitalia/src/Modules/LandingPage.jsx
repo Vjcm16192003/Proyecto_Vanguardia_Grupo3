@@ -1,4 +1,44 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
+
+function LandingPage() {
+  const nuevoUsuario = {
+    user_id:  9,
+    fullname: 'Marcela Rivera',
+    weight: (Math.random() * (200 - 50) + 50).toFixed(2), // Peso aleatorio entre 50 y 200
+    email: 'marcela@example.com',
+    date_of_birth: '1990-05-15', // Fecha de nacimiento fija
+    password: '@12345678',
+    height: (Math.random() * (200 - 100) + 100).toFixed(2), // Altura aleatoria entre 100 y 200
+    gender: 'Female',
+    diet_type: 'Vegetarian', // Tipo de dieta fijo
+    allergies: ['Peanuts', 'Shellfish', 'Lactose']
+  };
+
+  if (!nuevoUsuario) {
+    return <div>No hay información de usuario disponible.</div>;
+  }
+
+  return (
+    <div>
+      <h1>Bienvenido, {nuevoUsuario.fullname || 'Usuario'}!</h1>
+      <p>ID de usuario: {nuevoUsuario.user_id}</p>
+      <p>Correo electrónico: {nuevoUsuario.email}</p>
+      {/* Agrega más detalles según sea necesario */}
+    </div>
+  );
+}
+
+export default LandingPage;
+
+
+
+
+
+
+
+
+
+/*import React, { useContext, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { AuthContext } from '../AuthContext';  // Asegúrate de proporcionar la ruta correcta
 
@@ -37,9 +77,8 @@ function LandingPage() {
       <h1>Bienvenido, {userData.fullname || 'Usuario'}!</h1>
       <p>ID de usuario: {userData.user_id}</p>
       <p>Correo electrónico: {userData.email}</p>
-      {/* Agrega más detalles según sea necesario */}
     </div>
   );
 }
 
-export default LandingPage;
+export default LandingPage;*/
