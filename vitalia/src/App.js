@@ -9,13 +9,13 @@ import MenuPage from "./Modules/MenuPage.jsx"
 
 function App() {
   const [formData, setFormData] = useState({
-    fullName: 'marcela',
-    weight: 48,
+    fullName: '',
+    weight: 0,
     email: '',
-    date_of_birth: '2000-01-14',
+    date_of_birth: '',
     password: '',
-    height: 165,
-    gender: 'female',
+    height: 0,
+    gender: 'male',
     diet_type: 'Normal',
     allergies: [""],
     physicalActivity: 0
@@ -25,15 +25,17 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MenuPage formData={formData}/>} />
+          <Route path="/" element={<Login/>} />
           <Route path="/registrar-user" element={<Register formData={formData} setFormData={setFormData}/>} />
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/AI" element={<AIPage />} />
-          <Route path="/Menu" element={<MenuPage formData={formData}/>} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
+//<Route path="/Menu" element={<MenuPage formData={formData}/>} />
+
 
 export default App;
