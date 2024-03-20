@@ -6,19 +6,20 @@ import Register from "./Modules/Register.jsx";
 import LandingPage from "./Modules/LandingPage.jsx";
 import AIPage from "./Modules/AIpage.jsx"
 import MenuPage from "./Modules/MenuPage.jsx"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [formData, setFormData] = useState({
     fullName: '',
-    weight: 0,
+    weight: 48,
     email: '',
-    date_of_birth: '',
+    date_of_birth: '2000-01-14',
     password: '',
-    height: 0,
-    gender: 'male',
+    height: 165,
+    gender: 'female',
     diet_type: 'Normal',
     allergies: [""],
-    physicalActivity: 0
+    physicalActivity: 1
 });
 
   return (
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/registrar-user" element={<Register formData={formData} setFormData={setFormData}/>} />
-          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/landing" element={<MenuPage formData={formData}/>} />
           <Route path="/AI" element={<AIPage />} />
         </Routes>
       </BrowserRouter>

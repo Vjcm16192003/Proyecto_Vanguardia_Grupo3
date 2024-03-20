@@ -12,11 +12,11 @@ function Login() {
   // Definición del nuevo usuario con los atributos proporcionados
   const nuevoUsuario = {
     fullname: 'Marcela Rivera',
-    weight: (Math.random() * (200 - 50) + 50).toFixed(2), // Peso aleatorio entre 50 y 200
+    weight: 48, // Peso aleatorio entre 50 y 200
     email: 'marcela@example.com',
     date_of_birth: '1990-05-15', // Fecha de nacimiento fija
     password: '@12345678',
-    height: (Math.random() * (200 - 100) + 100).toFixed(2), // Altura aleatoria entre 100 y 200
+    height: 165, // Altura aleatoria entre 100 y 200
     gender: 'Female',
     diet_type: 'Vegetarian', // Tipo de dieta fijo
     allergies: ['Peanuts', 'Shellfish', 'Lactose'][Math.floor(Math.random() * 3)], // Alergia aleatoria
