@@ -56,6 +56,11 @@ button {
 	transition: transform 80ms ease-in;
 }
 
+#signIn{
+	margin-top: 20px;
+	padding-top: 10px;
+}
+
 button.ghost {
 	background-color: transparent;
 	border-color: #A5BF7E;
@@ -104,7 +109,7 @@ input {
 .sign-in-container {
 	left: 0;
 	width: 50%;
-	z-index: 2;
+	z-index: 4;
 }
 
 .container.right-panel-active .sign-in-container {

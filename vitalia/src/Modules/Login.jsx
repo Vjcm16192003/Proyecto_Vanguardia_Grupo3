@@ -62,18 +62,19 @@ function Login() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <a href="#">Forgot your password?</a>
-          <button type="button" onClick={handleSignIn}>
+          <button  id="signIn" type="button" onClick={handleSignIn}>
             Sign In
           </button>
         </form>
       </div>
+
+      
       <div className="overlay-container">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
             <h1>Welcome Back!</h1>
             <p>To keep connected with us please login with your personal info</p>
-            <button className="ghost" id="signIn" onClick={handleSignIn}>
+            <button id="signIn" onClick={handleSignIn}>
               Sign In
             </button>
           </div>
