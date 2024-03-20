@@ -1,0 +1,27 @@
+.ingredient-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .ingredient-item {
+    display: flex; /* Esto establece el contenedor como un flex container */
+    align-items: center; /* Esto alinea los elementos verticalmente */
+    margin-right: 20px; /* Espacio entre los elementos (ajusta según sea necesario) */
+  }
+  
+  .checkbox-label {
+    display: flex; /* Esto permite que el label contenga tanto el checkbox como el texto */
+    align-items: center; /* Esto alinea los elementos verticalmente */
+  }
+  
+  .carousel-container .carousel-inner {
+    max-height: 500px;
+    margin: auto;
+    width: 100%;
+  }
+  
+  .carousel-container .carousel-item img {
+    max-height: 100%;
+    height: auto;
+  }
+
