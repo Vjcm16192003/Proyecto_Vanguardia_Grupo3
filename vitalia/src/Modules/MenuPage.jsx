@@ -15,6 +15,20 @@ function MenuPage({formData}) {
   const [recipesL, setRecipesL] = useState([]);
   const [recipesD, setRecipesD] = useState([]);
   const [recipesS, setRecipesS] = useState([]);
+  const [modalOpen, setModalOpen] = useState({}); 
+
+  const [currentPageB, setCurrentPageB] = useState(0);
+  const [currentPageL, setCurrentPageL] = useState(0);
+  const [currentPageD, setCurrentPageD] = useState(0);
+  const [currentPageS, setCurrentPageS] = useState(0);
+  const startIndexB = currentPageB * 3;
+  const endIndexB = startIndexB + 3;
+  const startIndexL = currentPageL * 3;
+  const endIndexL = startIndexL + 3;
+  const startIndexD = currentPageD * 3;
+  const endIndexD = startIndexD + 3;
+  const startIndexS = currentPageS * 3;
+  const endIndexS = startIndexS + 3;
 
   const [IngredientsBreakfast, setIngredientsBreakfast] = useState([]);
   const [IngredientsLunch, setIngredientsLunch] = useState([]);
@@ -26,10 +40,10 @@ function MenuPage({formData}) {
     "Eggs", "Bread", "Milk", "Fruits", "Yogurt", "Butter", "Cheese", "Bacon", "Ham", "Sausages", "Vegetables", "Potatoes", "Coffee", "Tea",  "Honey", "Nuts"
   ];
   const lunch = [
-    "Chicken", "Beef", "Pork", "Fish", "Rice", "Pasta", "Salad", "Vegetables", "Bread", "Cheese", "Soup", "Pasta"
+    "Chicken", "Beef", "Pork", "Fish", "Rice", "Pasta", "Salad", "Vegetables", "Bread", "Cheese", "Soup"
   ];
   const dinner = [
-    "Chicken", "Beef", "Pork", "Fish", "Rice", "Pasta", "Potatoes", "Salad", "Vegetables", "Beans", "Bread", "Cheese", "Soup", "Tomatoes", "Onions", "Garlic", "Pasta"
+    "Chicken", "Beef", "Pork", "Fish", "Rice", "Pasta", "Potatoes", "Salad", "Vegetables", "Beans", "Bread", "Cheese", "Soup", "Tomatoes", "Onions", "Garlic"
   ];
   const healthySnacks = [
     "Nuts", "Fruits", "Vegetables", "Yogurt", "Cheese", "Hummus", "Popcorn", "Edamame"
@@ -49,6 +63,10 @@ function MenuPage({formData}) {
   };
 
   const GenerarMenu = () => {
+    if (IngredientsBreakfast.length === 0 ||IngredientsLunch.length === 0 ||IngredientsDinner.length === 0 ||ingredientsSnack.length === 0) {
+      alert('Error: Debes agregar al menos un ingrediente para cada una de las comidas.');
+      return false;
+  }
     const x = formData.sex === 'male' ? 0 : 1;
     const dateOfBirth = new Date(formData.date_of_birth);
     const currentDate = new Date();
@@ -116,6 +134,45 @@ function MenuPage({formData}) {
     } else {
       setIngredients(prevIngredients => prevIngredients.filter(ingredient => ingredient !== value));
     }
+  };
+
+  const toggleModal = (recipeName) => {
+    setModalOpen(prevState => ({
+      ...prevState,
+      [recipeName]: !prevState[recipeName] // Invierte el estado del modal específico
+    }));
+  };
+
+  const nextPageB = () => {
+    setCurrentPageB(prevPage => prevPage + 1);
+  };
+
+  const prevPageB = () => {
+    setCurrentPageB(prevPage => prevPage - 1);
+  };
+
+  const nextPageL = () => {
+    setCurrentPageL(prevPage => prevPage + 1);
+  };
+
+  const prevPageL = () => {
+    setCurrentPageL(prevPage => prevPage - 1);
+  };
+
+  const nextPageD = () => {
+    setCurrentPageD(prevPage => prevPage + 1);
+  };
+
+  const prevPageD = () => {
+    setCurrentPageD(prevPage => prevPage - 1);
+  };
+
+  const nextPageS = () => {
+    setCurrentPageS(prevPage => prevPage + 1);
+  };
+
+  const prevPageS = () => {
+    setCurrentPageS(prevPage => prevPage - 1);
   };
 
   return (
@@ -217,17 +274,64 @@ function MenuPage({formData}) {
       {!isVisible && (
         <>
         <div className="row">
-        <h3>Breakfast 30%</h3>
-        <p>{((calorias * 30) / 100).toFixed(0)} Calorias</p>
-          {recipesB.slice(0, 4).map((card, index) => (
-            <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div className='d-flex justify-content-between'>
+            <div>
+              <h3>Breakfast 30%</h3>
+              <p >{((calorias * 30) / 100).toFixed(0)} Calorias</p>
+            </div>
+            <div>
+              <button onClick={prevPageB} disabled={currentPageB === 0}>&lt;</button>
+              <button onClick={nextPageB} disabled={endIndexB  >= recipesB.length}>&gt;</button>
+            </div>
+          </div>
+          {recipesB.slice(startIndexB, endIndexB).map((card, index) => (
+              <div key={index} className="col-lg-4 mb-4">
+                <div className="card">
+                  <img src={card.imageUrl} className="card-img-top" alt={card.name} />
+                  <div className="card-body">
+                    <h5 className="card-title">{card.name}</h5>
+                    <p className="card-text">{card.caloriesPerServing.toFixed(0)}</p>
+                    
+                    <RWindow 
+                    isOpen={modalOpen[card.name]} 
+                    toggleModal={() => toggleModal(card.name)} 
+                    steps={card.steps}
+                    ingredients={card.ingredients}
+                    healthLabels={card.healthLabels}
+                    />
+                    <button  onClick={() => toggleModal(card.name)}> + information</button>
+                  </div>
+                </div>
+              </div>
+          ))}
+        </div>
+
+        <div className="row">
+        <div className='d-flex justify-content-between'>
+            <div>
+              <h3>Lunch 30%</h3>
+              <p>{((calorias * 30) / 100).toFixed(0)} Calorias</p>
+            </div>
+            <div>
+              <button onClick={prevPageL} disabled={currentPageL === 0}>&lt;</button>
+              <button onClick={nextPageL} disabled={endIndexL >= recipesB.length}>&gt;</button>
+            </div>
+          </div>
+          {recipesL.slice(startIndexL, endIndexL).map((card, index) => (
+            <div key={index} className="col-lg-4 mb-4">
               <div className="card">
                 <img src={card.imageUrl} className="card-img-top" alt={card.name} />
                 <div className="card-body">
                   <h5 className="card-title">{card.name}</h5>
                   <p className="card-text">{card.caloriesPerServing.toFixed(0)}</p>
-                  <a href='#'> + informacion</a>
-
+                  <RWindow 
+                    isOpen={modalOpen[card.name]} 
+                    toggleModal={() => toggleModal(card.name)} 
+                    steps={card.steps}
+                    ingredients={card.ingredients}
+                    healthLabels={card.healthLabels}
+                    />
+                    <button  onClick={() => toggleModal(card.name)}> + information</button>
                 </div>
               </div>
             </div>
@@ -235,16 +339,31 @@ function MenuPage({formData}) {
         </div>
 
         <div className="row">
-        <h3>Lunch 30%</h3>
-        <p>{((calorias * 30) / 100).toFixed(0)} Calorias</p>
-          {recipesL.slice(0, 4).map((card, index) => (
-            <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div className='d-flex justify-content-between'>
+            <div>
+              <h3>Dinner 30%</h3>
+              <p>{((calorias * 30) / 100).toFixed(0)} Calorias</p>
+            </div>
+            <div>
+              <button onClick={prevPageD} disabled={currentPageD === 0}>&lt;</button>
+              <button onClick={nextPageD} disabled={endIndexD >= recipesB.length}>&gt;</button>
+            </div>
+          </div>
+          {recipesD.slice(startIndexD, endIndexD).map((card, index) => (
+            <div key={index}className="col-lg-4 mb-4">
               <div className="card">
                 <img src={card.imageUrl} className="card-img-top" alt={card.name} />
                 <div className="card-body">
                   <h5 className="card-title">{card.name}</h5>
                   <p className="card-text">{card.caloriesPerServing.toFixed(0)}</p>
-                  <a href='#'> + informacion</a>
+                  <RWindow 
+                    isOpen={modalOpen[card.name]} 
+                    toggleModal={() => toggleModal(card.name)} 
+                    steps={card.steps}
+                    ingredients={card.ingredients}
+                    healthLabels={card.healthLabels}
+                    />
+                    <button  onClick={() => toggleModal(card.name)}> + information</button>
                 </div>
               </div>
             </div>
@@ -252,50 +371,40 @@ function MenuPage({formData}) {
         </div>
 
         <div className="row">
-        <h3>Dinner 30%</h3>
-        <p>{((calorias * 30) / 100).toFixed(0)} Calorias</p>
 
-          {recipesD.slice(0, 4).map((card, index) => (
-            <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-4">
-              <div className="card">
-                <img src={card.imageUrl} className="card-img-top" alt={card.name} />
-                <div className="card-body">
-                  <h5 className="card-title">{card.name}</h5>
-                  <p className="card-text">{card.caloriesPerServing.toFixed(0)}</p>
-                  <a href='#'> + informacion</a>
-                </div>
-              </div>
+        <div className='d-flex justify-content-between'>
+            <div>
+              <h3>Snack 10%</h3>
+              <p>{((calorias * 10) / 100).toFixed(0)} Calorias</p>
             </div>
-          ))}
-        </div>
-
-        <div className="row">
-        <h3>Snack 10%</h3>
-        <p>{((calorias * 10) / 100).toFixed(0)} Calorias</p>
-          {recipesS.slice(0, 4).map((card, index) => (
-            <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div>
+              <button onClick={prevPageS} disabled={currentPageS === 0}>&lt;</button>
+              <button onClick={nextPageS} disabled={endIndexS >= recipesB.length}>&gt;</button>
+            </div>
+          </div>
+          {recipesS.slice(startIndexS, endIndexS).map((card, index) => (
+            <div key={index} className="col-lg-4 mb-4">
               <div className="card">
                 <img src={card.imageUrl} className="card-img-top" alt={card.name} />
                 <div className="card-body">
                   <h5 className="card-title">{card.name}</h5>
                   <p className="card-text">{card.caloriesPerServing.toFixed(0)}</p>
-                  <a href='#'> + informacion</a>
+                  <RWindow 
+                    isOpen={modalOpen[card.name]} 
+                    toggleModal={() => toggleModal(card.name)} 
+                    steps={card.steps}
+                    ingredients={card.ingredients}
+                    healthLabels={card.healthLabels}
+                    />
+                    <button  onClick={() => toggleModal(card.name)}> + information</button>
                 </div>
               </div>
             </div>
           ))}
         </div>
         </>
-        
-
-        
-      
       )} 
-
-
     </div>
-
-     
     </>
   );
 }
