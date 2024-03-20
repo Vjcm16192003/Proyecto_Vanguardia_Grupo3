@@ -3,18 +3,37 @@ import './Register.css';
 import { useNavigate } from 'react-router-dom';
 import Topbar from '../Components/Topbar';
 
-function Register({formData,setFormData}) {
+function Register() {
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
+
+    const [formData, setFormData] = useState({
+        fullName: '',
+        weight: 0,
+        email: '',
+        date_of_birth: '',
+        password: '',
+        height: 0,
+        gender: 'Male',
+        diet_type: 'Normal',
+        allergies: [""],
+        physical_activity: 0
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         let updatedValue = value;
 
+        
+
         // Convertir altura de cm a metros
         if (name === 'height') {
             updatedValue = (parseFloat(value) / 100).toFixed(2);
+        }
+
+        if(name === 'physical_activity'){
+            updatedValue = (parseInt(value));
         }
 
         setFormData({ ...formData, [name]: updatedValue });
@@ -67,6 +86,7 @@ function Register({formData,setFormData}) {
             gender: formData.gender,
             diet_type: formData.diet_type,
             allergies: formData.allergies,
+            physical_activity: formData.physical_activity,
         };
 
         fetch('http://localhost:5000/usuario', {
@@ -198,12 +218,15 @@ function Register({formData,setFormData}) {
 
                     <div className="form-group">
                         <label htmlFor="physical-activity">physical activity:</label>
-                        <select id="diet_type" name="physicalActivity" value={formData.physicalActivity} onChange={handleChange}>
+                        <select id="physical_activity" name="physical_activity" value={formData.physical_activity} onChange={handleChange}>
                             <option value="1">Sedentary</option>
                             <option value="2">Moderately active</option>
                             <option value="3">Athletic</option>
                         </select>
                     </div>
+
+
+
                     <button type="button" onClick={handleRegister}>Sign Up</button>
                 </div>
             </div>

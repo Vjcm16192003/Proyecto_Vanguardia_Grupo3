@@ -11,18 +11,6 @@ import MenuPage from "./Modules/MenuPage.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    weight: 48,
-    email: '',
-    date_of_birth: '2000-01-14',
-    password: '',
-    height: 165,
-    gender: 'female',
-    diet_type: 'Normal',
-    allergies: [""],
-    physicalActivity: 1
-});
 
   return (
     <div className="App">
@@ -34,8 +22,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/" element={<Login/>} />
-          <Route path="/registrar-user" element={<Register formData={formData} setFormData={setFormData}/>} />
-          <Route path="/landing" element={<MenuPage formData={formData}/>} />
+          <Route path="/recipe" element={<MenuPage/>} />
           <Route path="/AI" element={<AIPage />} />
         </Routes>
       </BrowserRouter>

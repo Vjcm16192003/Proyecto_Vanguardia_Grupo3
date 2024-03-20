@@ -98,6 +98,10 @@ function Store() {
         navigate('/perfil');
     };
 
+    const handleAI = () => {
+        navigate('/AI');
+    };
+
 
     return (
         <div id="scrollable-page">
@@ -124,6 +128,7 @@ function Store() {
                         <li><a onClick={handleLanding}>HOME</a></li>
                         <li><a onClick={handleStore}>STORE</a></li>
                         <li><a onClick={handleRecipe}>RECIPES</a></li>
+                        <li><a onClick={handleRecipe}>TEST AI</a></li>
                         <li class="dropdown">
                             <a href="#">PROFILE</a>
                             <div class="dropdown-content">
@@ -194,13 +199,7 @@ function Store() {
 
 
 
-            <footer id="foo">
-                <div class="footer-rights">
-                    <p>© 2024 Vitalia. All Rights Reserved. </p>
-
-                </div>
-
-            </footer>
+            
 
         </div>
     );

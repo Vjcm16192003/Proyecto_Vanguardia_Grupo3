@@ -97,12 +97,10 @@
 }
 
 #info{
-    margin-top: 55%;
     font-size: 230%;
     padding-left: 15%;
     text-align: center;
     justify-content: center;
-    position: absolute;
 }
 
 #content {
@@ -144,8 +142,8 @@
 
 
 #paragraph{
-    padding-top: 70%;
-    font-size: 110%;
+    padding-top: 580px;
+    font-size: 100%;
     padding-left: 5%;
     text-align: justify;
     width: 70%;

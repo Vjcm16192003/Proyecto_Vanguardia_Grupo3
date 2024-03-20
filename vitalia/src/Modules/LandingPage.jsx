@@ -61,6 +61,13 @@ const handleLanding = () => {
 const handlePerfil = () => {
   navigate('/perfil');
 };
+
+const handleAI = () => {
+  navigate('/AI');
+};
+
+
+
   return (
     <div id="scrollable-page">
       <nav id="nav">
@@ -86,6 +93,7 @@ const handlePerfil = () => {
             <li><a onClick={handleLanding}>HOME</a></li>
             <li><a onClick={handleStore}>STORE</a></li>
             <li><a onClick={handleRecipe}>RECIPES</a></li>
+            <li><a onClick={handleAI}>TEST AI</a></li>
             <li class="dropdown">
                 <a href="#">PROFILE</a>
                 <div class="dropdown-content">
@@ -112,18 +120,6 @@ const handlePerfil = () => {
         <img src={imagen} alt="imagen" id="infoImage" />
        </div>
       </div>
-
-
-    <div>Hola Mundo</div>
-
-
-      <footer id="foo">
-        <div class="footer-rights">
-          <p>© 2024 Vitalia. All Rights Reserved. </p>
-
-        </div>
-
-      </footer>
 
     </div>
   );

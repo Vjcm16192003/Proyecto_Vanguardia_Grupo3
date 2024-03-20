@@ -1,12 +1,12 @@
 #container {
     width: 850px;
-    height: 600px;
+    height: 680px;
     margin: 50px auto;
     background-color: #fff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding-top:50px;
+    padding-top:80px;
   }
   
   #button-container {
