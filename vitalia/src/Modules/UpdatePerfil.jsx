@@ -48,37 +48,6 @@ function UpdatePerfil() {
     handleUpdate(userData);
   };
 
-
-  console.log("Datos a actualizar:", {
-    weight: userData.weight,
-    height: userData.height,
-    diet_type: userData.diet_type,
-    allergies: userData.allergies
-  });
-
-  const handleUpdate = (userData) => {
-    console.log("Datos a actualizar:", {
-      weight: userData.weight,
-      height: userData.height,
-      diet_type: userData.diet_type,
-      allergies: userData.allergies
-    });
-
-    Axios.put(`http://localhost:5000/usuario/${userId}`, userData)
-      .then(response => {
-        console.log('Datos actualizados exitosamente:', response.data);
-        alert('Datos actualizados con éxito');
-        navigate('/perfil');
-      })
-      .catch(error => {
-        console.error('Error al actualizar los datos del usuario:', error);
-        alert('Error al actualizar los datos del usuario. Por favor, inténtalo de nuevo.');
-      });
-  };
-
-
-
-
   const handleLanding = () => {
     navigate('/landing');
   };
@@ -95,6 +64,22 @@ function UpdatePerfil() {
   const handlePerfil = () => {
     navigate('/perfil');
   };
+  
+  const handleUpdate = (userData) => {
+    const allergies = userData.allergies || []; // Si userData.allergies es undefined o null, se asigna un array vacío
+  
+    Axios.put(`http://localhost:5000/usuario/${userId}`, { ...userData, allergies })
+      .then(response => {
+        console.log('Datos actualizados exitosamente:', response.data);
+        alert('Datos actualizados con éxito');
+        navigate('/perfil');
+      })
+      .catch(error => {
+        console.error('Error al actualizar los datos del usuario:', error);
+        alert('Error al actualizar los datos del usuario. Por favor, inténtalo de nuevo.');
+      });
+  };
+  
 
 
   const handleSignOutClick = () => {
@@ -111,12 +96,14 @@ function UpdatePerfil() {
   };
 
   const handleAddAllergyField = () => {
-    setUserData({ ...userData, allergies: [...userData.allergies, ''] });
+    const newAllergies = userData.allergies || []; // Inicializa como un array vacío si es nulo o indefinido
+    setUserData({ ...userData, allergies: [...newAllergies, ''] });
     setAllergyCount(prevCount => prevCount + 1); // Incrementar la cuenta de alergias
   };
 
+
   const handleRemoveAllergyField = index => {
-    const newAllergies = [...userData.allergies];
+    const newAllergies = Array.isArray(userData.allergies) ? [...userData.allergies] : [];
     newAllergies.splice(index, 1);
     setUserData({ ...userData, allergies: newAllergies });
     setAllergyCount(prevCount => prevCount - 1); // Decrementar la cuenta de alergias
@@ -133,8 +120,6 @@ function UpdatePerfil() {
     });
     setNewAllergy('');
   };
-
-  const [error, setError] = useState('');
 
   return (
     <div id="scrollable-page1">

@@ -116,7 +116,7 @@ function Register() {
         <div className="scrollable-page">
             <div className="container1">
                 <div className="registration-box">
-                    <h2 id="header-register">Registrate Ahora!</h2>
+                    <h2 id="header-register">Register Now!</h2>
 
                     <div className="form-group">
                         <label htmlFor="fullName">Full Name:</label>
