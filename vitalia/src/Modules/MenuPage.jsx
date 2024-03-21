@@ -11,7 +11,7 @@ import RWindow from "./RecipeWindow";
 import { AuthContext } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-function MenuPage({formData}) {
+function MenuPage() {
   const [userData, setUserData] = useState(null);
   const { userId, logout} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -22,6 +22,18 @@ function MenuPage({formData}) {
   const [recipesD, setRecipesD] = useState([]);
   const [recipesS, setRecipesS] = useState([]);
   const [modalOpen, setModalOpen] = useState({}); 
+  const [formData, setFormData] = useState({
+    fullName: '',
+    weight: 0,
+    email: '',
+    date_of_birth: '',
+    password: '',
+    height: 0,
+    gender: 'Male',
+    diet_type: 'Normal',
+    allergies: [""],
+    physical_activity: 0
+});
 
   const [currentPageB, setCurrentPageB] = useState(0);
   const [currentPageL, setCurrentPageL] = useState(0);
@@ -55,12 +67,6 @@ function MenuPage({formData}) {
     "Nuts", "Fruits", "Vegetables", "Yogurt", "Cheese", "Hummus", "Popcorn", "Edamame"
   ];
 
-  /*useEffect(() => {
-    cargarModelo();
-    console.log(formData)
-  }, [formData]);*/
-
-
   useEffect(() => {
     if (!userId) {
       // Manejar el caso en que userId no esté disponible (podría redirigir al inicio de sesión)
@@ -73,7 +79,8 @@ function MenuPage({formData}) {
       .then(response => {
         setUserData(response.data);
         cargarModelo();
-        console.log(userData)
+        console.log("ola soy este " ,userData)
+        console.log("ola soy este " ,response.data)
       })
       .catch(error => {
         console.error('Error al obtener detalles del usuario:', error);
@@ -96,14 +103,14 @@ function MenuPage({formData}) {
       alert('Error: Debes agregar al menos un ingrediente para cada una de las comidas.');
       return false;
   }
-    const x = formData.sex === 'male' ? 0 : 1;
-    const dateOfBirth = new Date(formData.date_of_birth);
+    const x = userData.gender === 'male' ? 0 : 1;
+    const dateOfBirth = new Date(userData.date_of_birth);
     const currentDate = new Date();
     const diffTime = Math.abs(currentDate - dateOfBirth);
     const aged = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
     
     //hacer prediccion predeterminada
-    const inputData = tf.tensor([[aged, formData.weight, formData.height, x, formData.physicalActivity]]);
+    const inputData = tf.tensor([[aged, userData.weight, userData.height, x, userData.physical_activity]]);
     const prediction =  model.predict(inputData);
     const caloriasTotales =prediction.dataSync()[0].toFixed(2);
 

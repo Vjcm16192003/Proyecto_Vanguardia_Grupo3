@@ -931,7 +931,7 @@ function AIPage() {
     }
     try {
       const options = {
-        epochs: 500,
+        epochs: 3000,
         validationSplit: 0.1,
         shuffle: true
       }
