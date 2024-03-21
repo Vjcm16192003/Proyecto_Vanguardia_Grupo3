@@ -46,7 +46,7 @@ function UpdatePerfil() {
 
   const handleClickUpdate = () => {
     handleUpdate(userData);
-};
+  };
 
 
   console.log("Datos a actualizar:", {
@@ -58,23 +58,23 @@ function UpdatePerfil() {
 
   const handleUpdate = (userData) => {
     console.log("Datos a actualizar:", {
-        weight: userData.weight,
-        height: userData.height,
-        diet_type: userData.diet_type,
-        allergies: userData.allergies
+      weight: userData.weight,
+      height: userData.height,
+      diet_type: userData.diet_type,
+      allergies: userData.allergies
     });
 
     Axios.put(`http://localhost:5000/usuario/${userId}`, userData)
-        .then(response => {
-            console.log('Datos actualizados exitosamente:', response.data);
-            alert('Datos actualizados con éxito');
-            navigate('/perfil');
-        })
-        .catch(error => {
-            console.error('Error al actualizar los datos del usuario:', error);
-            alert('Error al actualizar los datos del usuario. Por favor, inténtalo de nuevo.');
-        });
-};
+      .then(response => {
+        console.log('Datos actualizados exitosamente:', response.data);
+        alert('Datos actualizados con éxito');
+        navigate('/perfil');
+      })
+      .catch(error => {
+        console.error('Error al actualizar los datos del usuario:', error);
+        alert('Error al actualizar los datos del usuario. Por favor, inténtalo de nuevo.');
+      });
+  };
 
 
 
@@ -174,7 +174,7 @@ function UpdatePerfil() {
 
 
 
-      <div className="container2"style={{ paddingTop: `${20 + 8 * allergyCount}vw` }}>
+      <div className="container2" style={{ paddingTop: `${20 + 8 * allergyCount}vw` }}>
         <div className="registration-box1">
           <h2 id="header-update">Update Profile</h2>
 
@@ -219,7 +219,7 @@ function UpdatePerfil() {
 
           <div className="form-group1">
             <label htmlFor="allergies">Allergies:</label>
-            {userData.allergies.map((allergy, index) => (
+            {userData && userData.allergies && userData.allergies.map((allergy, index) => (
               <div key={index}>
                 <input
                   type="text"
@@ -238,15 +238,6 @@ function UpdatePerfil() {
           <button type="button1" onClick={handleClickUpdate}>Update Data</button>
         </div>
       </div>
-
-
-      <footer id="foo">
-        <div class="footer-rights">
-          <p>© 2024 Vitalia. All Rights Reserved. </p>
-
-        </div>
-
-      </footer>
 
     </div>
   );
