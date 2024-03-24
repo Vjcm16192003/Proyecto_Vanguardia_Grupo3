@@ -17,7 +17,7 @@ function Register() {
         height: 0,
         gender: 'Male',
         diet_type: 'Normal',
-        allergies: [""],
+        allergies: [],
         physical_activity: 0
     });
 
@@ -85,8 +85,9 @@ function Register() {
             height: parseFloat(formData.height).toFixed(2),  // Asegurarse de tener dos decimales
             gender: formData.gender,
             diet_type: formData.diet_type,
-            allergies: formData.allergies,
+            allergies: [],
             physical_activity: formData.physical_activity,
+            
         };
 
         fetch('http://localhost:5000/usuario', {
@@ -217,7 +218,7 @@ function Register() {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="physical-activity">physical activity:</label>
+                        <label htmlFor="physical-activity">Physical Activity:</label>
                         <select id="physical_activity" name="physical_activity" value={formData.physical_activity} onChange={handleChange}>
                             <option value="1">Sedentary</option>
                             <option value="2">Moderately active</option>

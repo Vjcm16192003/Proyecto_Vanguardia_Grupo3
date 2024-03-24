@@ -71,6 +71,7 @@ app.post("/usuario", (req, res) => {
     height,
     gender,
     diet_type,
+    allergies,
     physical_activity,
   } = req.body;
 
@@ -90,10 +91,11 @@ app.post("/usuario", (req, res) => {
       console.log("Fecha de Nacimiento:", date_of_birth);
       console.log("Peso:", weight);
       console.log("Tipo de Dieta:", diet_type);
+      console.log("Tipo de Dieta:", allergies);
       console.log("Activdad Fisica:", physical_activity);
 
-      const insertSTMT = `INSERT INTO usuario (user_id, fullname, weight, email, date_of_birth, password, height, gender, diet_type, physical_activity) 
-                            VALUES (${newUserId}, '${fullname}', ${weight}, '${email}', '${date_of_birth}', '${password}', ${height}, '${gender}', '${diet_type}', '${physical_activity}' );`;
+      const insertSTMT = `INSERT INTO usuario (user_id, fullname, weight, email, date_of_birth, password, height, gender, diet_type, allergies, physical_activity) 
+                            VALUES (${newUserId}, '${fullname}', ${weight}, '${email}', '${date_of_birth}', '${password}', ${height}, '${gender}', '${diet_type}', '{""}', '${physical_activity}' );`;
 
       pool.query(insertSTMT)
         .then((response) => {

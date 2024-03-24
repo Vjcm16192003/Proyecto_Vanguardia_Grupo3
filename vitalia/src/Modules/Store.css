@@ -36,13 +36,13 @@
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 15px 25px;
     font-size: 25px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.5s;
     justify-content: center;
-    margin-left: 40%;
+    width: 250px;
     margin-bottom: 80px;
     font-family: 'Montserrat';
   }
@@ -140,12 +140,10 @@
     background-color: #fff;
     border: 10px solid #89c561;
     border-radius: 8px;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    margin-left: 25%; 
-    margin-right: 25%;
     transition: transform 0.5s ease;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
   }
   
   #quoting-container:hover {
@@ -155,8 +153,8 @@
   #quoting-item {
     display: flex;
     /*align-items: center; /* Centra verticalmente los elementos */
-    margin: 35px 0;
-    font-size: 18px;
+    margin: 55px 0;
+    font-size: 24px;
     align-items: center;
     justify-content: space-between;
     transition: background-color 0.3s ease; /* Transición de color de fondo */
@@ -168,7 +166,7 @@
   #quoting-item-name {
     font-size: 22px;
     font-weight: bold;
-    margin-right: auto;
+    margin-right: 250px;
     font-family: 'Montserrat';
   }
   
@@ -177,12 +175,13 @@
     font-size: 20px;
    /* margin-left: auto; /* Empuja el total al extremo derecho */
     font-weight: bold;
-    margin-left: 15px;
+    margin-left: auto; /* Empuja el total al extremo derecho */
+    align-items: center; /* Alinea verticalmente el total al centro */
     font-family: 'Montserrat';
   }
 
   #quoting-item-separator {
-    margin: 10px 0;
+    margin: 20px 0;
     border: none;
     border-top: 1px solid #e0e0e0; /* Línea divisoria */
   }

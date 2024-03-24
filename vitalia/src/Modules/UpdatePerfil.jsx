@@ -72,7 +72,7 @@ function UpdatePerfil() {
       .then(response => {
         console.log('Datos actualizados exitosamente:', response.data);
         alert('Datos actualizados con éxito');
-        navigate('/perfil');
+        navigate('/landing');
       })
       .catch(error => {
         console.error('Error al actualizar los datos del usuario:', error);
