@@ -131,6 +131,7 @@ function MenuPage() {
   }
 
   const fetchData = async (time, min ,comida,setRecipes) => {
+
     try {
       const response = await axios.get('https://api.edamam.com/search', {
         params: {
@@ -138,7 +139,8 @@ function MenuPage() {
           app_id: 'f98b76dc',
           app_key: '4018c1b5e3ecc4452017695bb9e2e049',
           calories: `${min - 100}-${min}`,
-          mealType: time        
+          mealType: time,
+          excluded: (userData.allergies).join(',') 
         }
       });
 
@@ -151,7 +153,8 @@ function MenuPage() {
           imageUrl: recipe.recipe.image,
           ingredients: recipe.recipe.ingredientLines,
           mealType:time, 
-          healthLabels : recipe.recipe.healthLabels
+          healthLabels : recipe.recipe.healthLabels,
+          
         };
       });
 
@@ -293,11 +296,12 @@ const handleAI = () => {
       </Carousel>
     </div>
     <br/>
-    <h2>Recipe recommendation - Using Artificial Intelligence</h2>
+    
 
 
     
     <div id="container">
+    <h2>Recipe recommendation - Using Artificial Intelligence</h2>
       {isVisible && (
         <>
         <h3>Breakfast</h3>
